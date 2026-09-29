@@ -1,0 +1,123 @@
+/* Mobile menu: Reference 1's full-screen sheet. It wipes in from the left; the links are revealed one by one, left
+   to right, by a clip (no blur). */
+
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  visibility: hidden;
+  clip-path: inset(0 100% 0 0 round 0 0 50vw 0);
+  transition:
+    clip-path 200ms var(--ease-out),
+    visibility 0s linear 200ms;
+}
+
+.sheet[data-open="true"] {
+  visibility: visible;
+  clip-path: inset(0 0 0 0 round 0);
+  transition:
+    clip-path 320ms var(--ease-out),
+    visibility 0s;
+}
+
+.inner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 84px var(--site-gutter) 0;
+}
+
+/* Left-aligned, numbered links on hairlines: large enough to read as the page's chapters, in the site gutter. */
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid rgb(21 16 18 / 0.1);
+}
+
+/* The list takes focus when the sheet opens (MobileMenu.tsx) only so the next Tab starts inside it; it is not a
+   control, so it shows no ring. */
+.list:focus {
+  outline: none;
+}
+
+.item {
+  border-top: 1px solid rgb(21 16 18 / 0.1);
+  opacity: 0;
+  clip-path: inset(-8px 100% -8px -8px);
+}
+
+.sheet[data-open="true"] .item {
+  opacity: 1;
+  clip-path: inset(-8px -8px -8px -8px);
+  transition:
+    clip-path 320ms var(--ease-out),
+    opacity 220ms var(--ease-out);
+  transition-delay: calc(100ms + var(--i) * 60ms);
+}
+
+/* The section in view is dark, the rest muted (≥3:1 for large text). */
+.link {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 0;
+  font-size: clamp(34px, 10vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  text-decoration: none;
+  color: color-mix(in srgb, var(--color-muted) 75%, var(--color-paper));
+  transition: color 200ms var(--ease-standard);
+}
+
+.index {
+  flex: none;
+  width: 20px;
+  color: var(--color-muted);
+}
+
+.link[aria-current],
+.link:hover {
+  color: var(--color-ink-2);
+}
+
+.foot {
+  display: grid;
+  justify-items: stretch;
+  gap: 20px;
+  margin-top: auto;
+  padding: 24px 0 32px;
+  color: var(--color-muted);
+  text-align: center;
+  opacity: 0;
+}
+
+.cta {
+  justify-content: center;
+  height: 48px;
+}
+
+.sheet[data-open="true"] .foot {
+  opacity: 1;
+  transition: opacity 240ms var(--ease-out) 360ms;
+}
+
+@media (min-width: 64rem) {
+  .sheet {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet,
+  .sheet[data-open="true"],
+  .sheet[data-open="true"] .item,
+  .sheet[data-open="true"] .foot {
+    transition: none;
+  }
+}

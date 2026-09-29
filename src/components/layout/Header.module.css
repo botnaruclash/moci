@@ -1,0 +1,250 @@
+/* Header: Reference 1's mobile bar and desktop pill, in Splendessa colours. */
+
+/* Phones and tablets: sticky, not fixed, and pulled out of the flow by its own height so the Hero still runs under it.
+   iOS 26 (Safari, and the in-app browsers — Telegram, Instagram — that are Safari underneath) can leave a fixed layer
+   where it was when the toolbars slide away near the top of the page: the bar hung ~70px down, over the headline, with
+   the art showing above it. A sticky bar is laid out in the page: at the top it is the page's first 60px and scrolls
+   with them, and only past that does it hold to the top of the screen, which is the case iOS gets right. */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  margin-bottom: -60px;
+  color: var(--color-ink);
+}
+
+@media (min-width: 64rem) {
+  .header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    margin-bottom: 0;
+  }
+}
+
+/* Phones and tablets: a 60px full-width bar. */
+.bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 60px;
+  padding: 12px var(--site-gutter);
+  transition:
+    background-color 250ms var(--ease-standard),
+    border-color 250ms var(--ease-standard),
+    box-shadow 250ms var(--ease-standard),
+    color 250ms var(--ease-standard);
+}
+
+.header[data-tone="light"] .bar {
+  background-color: rgb(255 252 250 / 0.88);
+}
+
+.header[data-tone="dark"] .bar {
+  background-color: rgb(255 252 250 / 0.14);
+  color: var(--color-paper);
+}
+
+/* The frosting is for pointers only. A backdrop-filter on a fixed bar has to be re-sampled and re-blurred against
+   whatever is passing behind it, every frame, for the whole length of the page — which on iOS takes scrolling off
+   the compositor and hands it to the main thread, and that is felt as stutter on every section. Touch devices get
+   a slightly more opaque bar instead, which carries the same contrast on its own: the text over it was never
+   relying on the blur. */
+@media (hover: hover) and (pointer: fine) {
+  .bar {
+    -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(9px);
+  }
+
+  .header[data-tone="light"] .bar {
+    background-color: rgb(255 252 250 / 0.72);
+  }
+}
+
+/* Logo: Reference 1's 34px slot, holding the Splendessa Y alone — no tile, no wordmark — at every width. The Y is
+   derived from the supplied master without redrawing (see /brand/splendessa-y.png; the derivation script is in
+   .captures/phase-12/logo-y/derive.mjs) and tinted here: #171418, the supplied dark lockup's ink, on light scenes;
+   white on dark ones. */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; /* the mark is 30px wide; the link keeps Reference 1's full 34px slot as its target */
+  height: 34px;
+  flex: none;
+  border-radius: 6px;
+  color: #171418;
+  text-decoration: none;
+  transition: color 250ms var(--ease-standard);
+}
+
+.header[data-tone="dark"] .logo {
+  color: #ffffff;
+}
+
+.logoMark {
+  display: block;
+  height: 19px; /* about the nav labels' height, a touch larger */
+  aspect-ratio: 367 / 354; /* the derived Y's own shape */
+  background-color: currentColor;
+  mask: url("/brand/splendessa-y.png") center / contain no-repeat;
+}
+
+.links {
+  display: none;
+}
+
+.link {
+  display: inline-block;
+  padding-block: 6px; /* a 32px target inside the 54px pill; the text keeps its place */
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 200ms var(--ease-standard);
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+/* Phones and tablets: the header CTA is an outline in the bar's own ink, so it doesn't outweigh the mark and the menu
+   (the filled CTA returns in the desktop pill). */
+@media (max-width: 63.999rem) {
+  .actions > a {
+    padding: 0 10px 0 14px;
+    border-color: color-mix(in srgb, currentColor 30%, transparent);
+    background-color: transparent;
+    background-image: none;
+    color: inherit;
+    font-size: 14px;
+  }
+}
+
+.menuButton {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  color: inherit;
+  background-color: var(--color-paper);
+  box-shadow: 0 0 0 1px rgb(21 16 18 / 0.1);
+  transition:
+    background-color 250ms var(--ease-standard),
+    box-shadow 250ms var(--ease-standard);
+}
+
+.header[data-tone="dark"] .menuButton {
+  background-color: rgb(255 252 250 / 0.15);
+  box-shadow: none;
+}
+
+/* Thin 1px strokes, a step lighter than the text, as in Reference 1. */
+.menuIcon {
+  position: relative;
+  width: 16px;
+  height: 11px;
+  color: var(--color-ink-2);
+}
+
+.header[data-tone="dark"] .menuIcon {
+  color: var(--color-paper);
+}
+
+.menuIcon i {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition:
+    transform 200ms var(--ease-out),
+    opacity 150ms var(--ease-out);
+}
+
+.menuIcon i:nth-child(1) {
+  top: 0;
+}
+
+.menuIcon i:nth-child(2) {
+  top: 5px;
+}
+
+.menuIcon i:nth-child(3) {
+  bottom: 0;
+}
+
+.menuIcon[data-open="true"] i:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.menuIcon[data-open="true"] i:nth-child(2) {
+  opacity: 0;
+}
+
+.menuIcon[data-open="true"] i:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg);
+}
+
+/* Desktop: a centred floating pill, 16px from the top, 54px tall. */
+@media (min-width: 64rem) {
+  .header {
+    pointer-events: none;
+  }
+
+  .bar {
+    pointer-events: auto;
+    width: max-content;
+    height: 54px;
+    margin: 16px auto 0;
+    padding: 8px 12px;
+    gap: 24px;
+    border-radius: 12px;
+    border: 1px solid rgb(255 252 250 / 0.2);
+  }
+
+  .header[data-tone="light"] .bar {
+    background-color: rgb(255 252 250 / 0.82);
+    border-color: rgb(21 16 18 / 0.06);
+    box-shadow:
+      0 1px 2px rgb(21 16 18 / 0.05),
+      0 8px 20px rgb(21 16 18 / 0.06);
+  }
+
+  .links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .actions {
+    margin-left: 0;
+  }
+
+  .menuButton {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .logo,
+  .link,
+  .menuButton,
+  .menuIcon i {
+    transition: none;
+  }
+}

@@ -15,6 +15,7 @@ npm run build
 
 | # | Section | Source |
 |---|---|---|
+| – | Header (desktop pill, phone bar + full-screen menu) | `bytemochi.com` — `components/layout/Header` + `MobileMenu` |
 | 1 | Hero (dusk pier scene, glass card) | `bytemochi.com` — `components/hero` |
 | 2 | Form (headline, clouds, sitting figure, intake flow) | `get.bytemochi.com` — `components/campaign2` (form part of `CampaignPage`) |
 | 3 | Free vs €99 Priority table | `get.bytemochi.com` — `components/campaign2` (compare part of `CampaignPage`) |
@@ -39,4 +40,7 @@ The composition is in `src/app/page.tsx`; sections 2–3 are in `src/components/
 - `/terms` and `/privacy` do not exist here, so `content/legal.ts` marks both unpublished and nothing links to them.
 - The only links leaving localhost: the three demo sites (`solv|cedar|halden.splendessa.com`), opened from the
   demo panel — Splendessa's live demos.
-- No header bar: it is not one of the six sections.
+- Header links (`site.headerNav`): Start here → form, Offer → table, Craft → demos; the button → form. The form's
+  label is its existing kicker "Start here". The footer keeps its own two links (`site.nav`).
+- The form, table and demo sections carry `data-section data-tone="light"` so the header turns light over them, and
+  the form's scroll margin uses the header's offset (it was sized for the campaign's 60px bar).

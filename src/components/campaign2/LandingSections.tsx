@@ -8,7 +8,8 @@ import { START_ID } from "./StartLink";
 
 // moci-web: the form section and the comparison table, taken as they were from the campaign page
 // (get.bytemochi.com, components/campaign2/CampaignPage.tsx). Only two changes: the form's headline is an <h2> (the
-// Hero above holds the page's <h1>), and the preview bar names the local demo. The form never reaches a server.
+// Hero above holds the page's <h1>), and the preview bar names the local demo. The sections carry data-section and
+// data-tone="light" so the header (and anchor scroll-margin) reads them as light sections, as on the brand site. The form never reaches a server.
 
 const { hero, compare } = campaign;
 
@@ -24,7 +25,7 @@ export function DemoBar() {
 
 export function FormSection() {
   return (
-    <section className={styles.hero} aria-labelledby="hero-title">
+    <section data-section="" data-tone="light" className={styles.hero} aria-labelledby="hero-title">
       <div className={cx("site-container", styles.heroInner)}>
         {/* Three of the same supplied cloud, at whole-number scales of its 20 × 6 grid, kept clear of the type. */}
         {(["cloudA", "cloudB", "cloudC"] as const).map((cloud) => (
@@ -55,7 +56,7 @@ export function FormSection() {
 
 export function CompareSection() {
   return (
-    <section id="compare" className={styles.compareSection} aria-labelledby="compare-title">
+    <section id="compare" data-section="" data-tone="light" className={styles.compareSection} aria-labelledby="compare-title">
       <div className={cx("site-container", styles.compareInner)}>
         {/* Two of the supplied outlined cloud, at a whole-number scale of its 18 × 8 grid, either side of the heading. */}
         {(["compareCloudL", "compareCloudR"] as const).map((cloud) => (

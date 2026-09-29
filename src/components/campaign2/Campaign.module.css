@@ -197,7 +197,8 @@
 
 .formSlot {
   margin-top: 20px;
-  scroll-margin-top: 60px;
+  /* moci-web: clears the brand header (72px bar, 86px desktop pill) instead of the campaign's 60px bar. */
+  scroll-margin-top: var(--header-offset);
   min-width: 0;
 }
 

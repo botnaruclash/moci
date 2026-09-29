@@ -10,7 +10,7 @@ const { concepts } = campaign;
 
 export function ConceptBuilds() {
   return (
-    <section id="concepts" className={styles.section} aria-labelledby="concepts-title">
+    <section id="concepts" data-section="" data-tone="light" className={styles.section} aria-labelledby="concepts-title">
       <div className="site-container">
         <div className={styles.intro}>
           <div className={styles.head}>

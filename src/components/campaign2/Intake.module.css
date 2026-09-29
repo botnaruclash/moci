@@ -6,7 +6,7 @@
   grid-template-columns: minmax(0, 1fr);
   gap: 16px;
   padding: 14px 16px calc(24px + env(safe-area-inset-bottom));
-  scroll-margin-top: 64px;
+  scroll-margin-top: var(--header-offset); /* moci-web: was 64px, for the campaign's 60px bar */
   border: 1px solid rgb(21 16 18 / 0.08);
   border-radius: 20px;
   background-color: var(--color-rose-50);

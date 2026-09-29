@@ -16,6 +16,13 @@ export const site = {
     { label: "Craft", href: "#concepts" },
     { label: "Offer", href: "#compare" },
   ],
+  // moci-web: the header's links (Header and its mobile menu), in page order: the form, the two options, the demos.
+  // The form's label is its own kicker (campaign2.form.kicker); the other two keep the footer's labels.
+  headerNav: [
+    { label: "Start here", href: "#start" },
+    { label: "Offer", href: "#compare" },
+    { label: "Craft", href: "#concepts" },
+  ],
   // Legal pages the site really has: Terms and Privacy appear only once published (content/legal.ts), so nothing can
   // link to a page that answers 404 or to unapproved text.
   legal: publishedLegalLinks as readonly { label: string; href: string }[],
