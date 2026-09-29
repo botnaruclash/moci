@@ -253,3 +253,9 @@
     animation: none;
   }
 }
+
+/* moci-web: a call button with no number set yet (CallLink) — in place, visibly off, never a guessed tel: link. */
+.callOff {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

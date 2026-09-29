@@ -5,7 +5,8 @@
 // Build time: the owner confirmed that the first build of each took under two hours. That is all the label claims —
 // not exact minutes, and not the time to an approved launch.
 
-export const DEMO_LABEL = "Demo build · fictional business";
+/** moci: the label on each card and in its panel (owner's copy, 29 Sep 2026). */
+export const DEMO_LABEL = "Concept demonstrativ";
 export const FIRST_BUILD_LABEL = "First build · under 2 hours";
 
 export type DemoSite = {
@@ -54,9 +55,6 @@ export const demoSites: readonly DemoSite[] = [
 ];
 
 export const demoCopy = {
-  /** The explore hint on each card, worded for touch or mouse. */
-  hintTouch: "Tap to explore",
-  hintPointer: "Click to explore",
   link: "Check it out for yourself",
   close: "Close",
 } as const;

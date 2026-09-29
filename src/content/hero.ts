@@ -1,16 +1,14 @@
-// Hero copy — DRAFT (structural pass, 19 Sep 2026). Not final copywriting.
-// The Hero has one job: Splendessa designs and builds websites and redesigns, fast, with people directing the work,
-// and the next step is starting a website on getsplendessa.com. The ≈12 hours is explained once, in the Offer.
+// Hero copy — moci (owner's copy, 29 Sep 2026). Each string is the owner's own sentence, placed in the Hero's slots:
+// the descriptor carries the first sentence (two display lines), the glass card the second sentence and the 3-hour
+// condition.
 
 export const heroCopy = {
-  // Two fixed lines, Reference 2 style.
-  headline: ["Built fast.", "Made for you."],
-  // Each line is justified to the headline block on desktop.
-  descriptor: ["New websites and redesigns,", "directed by people, built fast."],
+  headline: ["Site-ul tău.", "Făcut rapid."],
+  descriptor: ["Construim site-uri pentru afaceri", "de servicii din Moldova."],
   card: {
-    heading: "A first working build in about 12 hours.",
-    condition: "A working preview link, 12 hours after a priority build is paid.",
-    // moci-web: there is no "How it works" section here; it points to the comparison table until the copy is decided.
-    secondaryLink: { label: "See how it works", href: "#compare" },
+    heading: "Începi gratuit pe un subdomeniu moci.md.",
+    condition:
+      "După ce preluăm proiectul și primim materialele, îți pregătim prima versiune funcțională în aproximativ 3 ore.",
+    secondaryLink: { label: "Vezi exemplele", href: "#concepts" },
   },
 } as const;

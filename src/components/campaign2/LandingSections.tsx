@@ -1,14 +1,16 @@
-import { campaign } from "@/content/campaign2";
+import { ButtonLink } from "@/components/ui/ButtonLink";
+import { CallLink } from "@/components/ui/CallLink";
+import { campaign, type Cell } from "@/content/campaign2";
 import { demoMode } from "@/content/demoMode";
-import { legalLinks, termsPublished } from "@/content/legal";
+import { site } from "@/content/site";
 import { cx } from "@/lib/cx";
 import styles from "./Campaign.module.css";
 import { IntakeFlow } from "./IntakeFlow";
 import { START_ID } from "./StartLink";
 
-// moci-web: the form section and the comparison table, taken as they were from the campaign page
-// (get.bytemochi.com, components/campaign2/CampaignPage.tsx). Only two changes: the form's headline is an <h2> (the
-// Hero above holds the page's <h1>), and the preview bar names the local demo. The sections carry data-section and
+// moci-web: the form section and the comparison table, from the campaign page (get.bytemochi.com,
+// components/campaign2/CampaignPage.tsx), with moci's copy. The form's headline is an <h2> (the Hero holds the <h1>);
+// the table's cells are a check, a cross or the owner's words, and the table ends in a note and two buttons. The sections carry data-section and
 // data-tone="light" so the header (and anchor scroll-margin) reads them as light sections, as on the brand site. The form never reaches a server.
 
 const { hero, compare } = campaign;
@@ -43,7 +45,7 @@ export function FormSection() {
           <p className={cx(styles.sub, "type-lead")}>{hero.sub}</p>
         </div>
 
-        <div id={START_ID} className={styles.formSlot} aria-labelledby="intake-title">
+        <div id={START_ID} className={styles.formSlot}>
           {/* The supplied sitting figure, perched on the form's top-right edge: hands on the ledge, legs over it. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className={styles.sitter} src="/campaign2/sitter.webp" alt="" aria-hidden="true" width={55} height={97} />
@@ -64,11 +66,9 @@ export function CompareSection() {
           <img key={cloud} className={cx(styles.compareCloud, styles[cloud])} src="/campaign2/cloud-outline.png" alt="" aria-hidden="true" width={18} height={8} />
         ))}
         <div className={styles.compareHead}>
-          <p className={cx(styles.kicker, "type-meta")}>{compare.kicker}</p>
           <h2 id="compare-title" className="type-h2">
             {compare.title}
           </h2>
-          <p className={cx(styles.compareLine, "type-body")}>{compare.line}</p>
         </div>
 
         <div className={styles.tableWrap}>
@@ -83,10 +83,10 @@ export function CompareSection() {
                     {compare.columns.feature}
                   </th>
                   <th scope="col" className={cx(styles.colHead, "type-control")}>
-                    {compare.columns.free}
+                    <ColumnHead name={compare.columns.free[0]} price={compare.columns.free[1]} />
                   </th>
                   <th scope="col" className={cx(styles.colHead, styles.colPriority, "type-control")}>
-                    {compare.columns.paid}
+                    <ColumnHead name={compare.columns.paid[0]} price={compare.columns.paid[1]} />
                   </th>
                 </tr>
               </thead>
@@ -95,13 +95,12 @@ export function CompareSection() {
                   <tr key={row.feature}>
                     <th scope="row" className={styles.feature}>
                       <span className="type-body">{row.feature}</span>
-                      {"note" in row && <span className={cx(styles.note, "type-small")}>{row.note}</span>}
                     </th>
                     <td className={styles.cell}>
-                      <Mark yes={row.free} />
+                      <Value cell={row.free} />
                     </td>
                     <td className={cx(styles.cell, styles.cellPriority)}>
-                      <Mark yes={row.paid} />
+                      <Value cell={row.paid} />
                     </td>
                   </tr>
                 ))}
@@ -109,13 +108,32 @@ export function CompareSection() {
             </table>
           </div>
         </div>
-        {/* Never a draft presented as terms: a neutral line until the approved terms are published, then the link. */}
-        <p className={cx(styles.termsNote, "type-meta")}>
-          {termsPublished ? <a href={legalLinks.terms.href}>{compare.termsLink}</a> : compare.termsPending}
-        </p>
+        <p className={cx(styles.termsNote, "type-small")}>{compare.note}</p>
+        {/* moci: the form button and "Sună pentru upgrade" (owner's copy). */}
+        <div className={styles.compareActions}>
+          <ButtonLink href={site.cta.href}>{site.cta.label}</ButtonLink>
+          <CallLink>{compare.call}</CallLink>
+        </div>
       </div>
     </section>
   );
+}
+
+/** "Gratuit · 0 MDL" on one line from 768px; on phones the price drops under the name and the dot goes. */
+function ColumnHead({ name, price }: { name: string; price: string }) {
+  return (
+    <>
+      {name}
+      <span className={styles.colSep}> · </span>
+      <span className={styles.colPrice}>{price}</span>
+    </>
+  );
+}
+
+/** A cell: "Da" / "—" as the pixel check or cross (their meaning in text for screen readers), or the owner's words. */
+function Value({ cell }: { cell: Cell }) {
+  if (typeof cell === "string") return <span className={cx(styles.cellText, "type-small")}>{cell}</span>;
+  return <Mark yes={cell} />;
 }
 
 /** A pixel check or cross, drawn on the site's grid, with its meaning in text for screen readers. */

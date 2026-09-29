@@ -1,12 +1,13 @@
-// moci-web: local demo notices. The form here is not connected to anything — no database, no alerts, no payment, no
-// tracking — so every place where the live page would act says so. Temporary, until the real backend is decided.
+// moci-web: local demo notices (DRAFT wording). The form here is not connected to anything — no database, no alerts,
+// no payment, no tracking — and the call buttons have no number yet, so the page says so. Temporary.
 
 export const demoMode = {
   bar: {
-    long: "Local demo: the form saves nothing, sends nothing and charges nothing.",
-    short: "Local demo · nothing is saved or sent",
+    long: "Demo local: formularul nu salvează și nu trimite nimic, iar butoanele de apel nu au încă un număr.",
+    short: "Demo local · nimic nu se salvează sau trimite",
   },
-  stamp: "Demo",
-  form: "Demo: nothing you enter here is saved or sent anywhere.",
-  result: "Demo: nothing was saved or sent. The reference is generated in your browser.",
+  form: "Demo: nimic din ce scrii aici nu se salvează și nu se trimite.",
+  result: "Demo: cererea nu a fost salvată și nu a fost trimisă.",
+  /** On a call button while site.phone is not set. */
+  callOff: "Demo: numărul de telefon nu e setat încă",
 } as const;

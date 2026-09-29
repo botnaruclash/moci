@@ -330,10 +330,8 @@ export function DemoGallery({ variant, label }: { variant: "craft" | "campaign";
                 <img className={styles.image} src={d.image} alt="" width={1200} height={750} decoding="async" draggable={false} />
                 <span className={styles.chip} data-at={d.labelAt ?? "bottom"} aria-hidden="true">
                   <span className={styles.chipName}>{d.name}</span>
-                  <span className={styles.explore}>
-                    <span data-pointer="touch">{demoCopy.hintTouch}</span>
-                    <span data-pointer="fine">{demoCopy.hintPointer}</span>
-                  </span>
+                  {/* moci: the card's label (was a "Tap / Click to explore" hint). */}
+                  <span className={styles.explore}>{DEMO_LABEL}</span>
                 </span>
               </button>
             </li>

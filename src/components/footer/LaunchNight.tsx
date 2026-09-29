@@ -1,4 +1,4 @@
-import { ButtonLink } from "@/components/ui/ButtonLink";
+import { CallLink } from "@/components/ui/CallLink";
 import { Logo } from "@/components/ui/Logo";
 import { footerCopy } from "@/content/footer";
 import { site } from "@/content/site";
@@ -15,7 +15,7 @@ import { NightScene } from "./NightScene";
 // Splendessa: the supplied launch scene as the footer's stage, with the information set in its empty sky, the supplied
 // logo (white lockup), and only the links this project actually has — the nav, the site CTA and the copyright.
 
-const { line, navLabel, caption } = footerCopy;
+const { line, navLabel } = footerCopy;
 
 export function LaunchNight() {
   return (
@@ -39,11 +39,11 @@ export function LaunchNight() {
                     </a>
                   </li>
                 ))}
+                <li>
+                  <CallLink variant="plain" className={cx(styles.navLink, "type-control")} />
+                </li>
               </ul>
             </nav>
-            <ButtonLink href={site.cta.href} variant="glass" className={styles.cta}>
-              {site.cta.label}
-            </ButtonLink>
           </div>
         </div>
 
@@ -66,9 +66,6 @@ export function LaunchNight() {
             ))}
           </ul>
         ) : null}
-        <p className="type-meta">
-          {caption.label} · {caption.text}
-        </p>
       </div>
     </div>
   );

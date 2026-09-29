@@ -15,25 +15,25 @@ const SITE = GET_URL;
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   alternates: { canonical: "/" },
-  title: { default: "Splendessa", template: "%s · Splendessa" },
+  title: { default: "moci", template: "%s · moci" },
   // Taken from the Hero, so the search result says what the page says.
-  description: "New websites and redesigns, directed by people, built fast.",
+  description: "Construim site-uri pentru afaceri de servicii din Moldova. Începi gratuit pe un subdomeniu moci.md.",
   // opengraph-image.png beside this file is picked up automatically, and is what a link to the site shows when it
   // is pasted into a chat — which, with a video pointing at it, is most of how it will first be seen. Without it
   // the preview was a bare line of text.
   openGraph: {
     type: "website",
     url: "/",
-    siteName: "Splendessa",
-    title: "Splendessa — build at AI speed",
-    description: "New websites and redesigns, directed by people, built fast.",
+    siteName: "moci",
+    title: "moci — Site-ul tău. Făcut rapid.",
+    description: "Construim site-uri pentru afaceri de servicii din Moldova. Începi gratuit pe un subdomeniu moci.md.",
   },
   twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${hostGrotesk.variable} ${departureMono.variable}`}>
+    <html lang="ro" className={`${hostGrotesk.variable} ${departureMono.variable}`}>
       <body data-scene="light">
         {children}
         {labEnabled && <GridOverlay />}

@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 
 /** Primary face for display and body text. */
 export const hostGrotesk = Host_Grotesk({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"], // moci-web: latin-ext for Romanian (ă, ș, ț)
   variable: "--font-host-grotesk",
   display: "swap",
 });

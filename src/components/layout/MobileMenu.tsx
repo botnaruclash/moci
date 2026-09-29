@@ -28,7 +28,7 @@ export function MobileMenu({ id, open, current, onNavigate }: MobileMenuProps) {
     <div id={id} className={styles.sheet} data-open={open} inert={!open}>
       <nav aria-label="Menu" className={styles.inner}>
         <ul ref={list} className={styles.list} tabIndex={-1}>
-          {site.headerNav.map((item, index) => (
+          {site.nav.map((item, index) => (
             <li key={item.href} className={styles.item} style={{ "--i": index } as CSSProperties}>
               <a
                 href={item.href}

@@ -133,7 +133,7 @@ export function Header({ initialTone = "light" }: { initialTone?: Tone }) {
         </Link>
 
         <ul className={styles.links}>
-          {site.headerNav.map((item) => (
+          {site.nav.map((item) => (
             <li key={item.href}>
               <a href={item.href} className={`${styles.link} type-control`}>
                 {item.label}

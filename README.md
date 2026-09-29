@@ -1,8 +1,9 @@
 # moci-web
 
 One landing page at `/`, assembled from the two Splendessa copies in `~/Desktop/bytemochi-web` (used as a source
-only, never modified). Extraction and arrangement only: the text, fonts, colours, logo, prices and delivery promise are
-still Splendessa's. The moci rebrand has not started.
+only, never modified), now carrying moci's Romanian copy (owner's copy, 29 Sep 2026). Still Splendessa's: the logo
+(header mark, footer lockup), favicon/icons, share image, colours, fonts, illustrations, and the three demo sites
+(their panel text is English).
 
 ```sh
 npm install
@@ -27,20 +28,22 @@ The composition is in `src/app/page.tsx`; sections 2–3 are in `src/components/
 
 ## Demo mode — nothing leaves the browser
 
-- There are no API routes and no server code. The form validates exactly as before, then answers with a reference
-  made in the browser (`LOCAL-xxxxxx`). Nothing is saved, no Telegram alert, no PayPal, no Meta Pixel.
+- There are no API routes and no server code. The form (business, services, site/social — optional, phone, details —
+  optional) validates in the browser, then shows its confirmation. Nothing is saved, sent or tracked.
+- The call buttons ("Sună pentru upgrade", "Sună-ne") have no number yet: set `site.call.phone` in
+  `src/content/site.ts` and they become `tel:` links. Until then they render visibly off, marked as a demo.
 - The bar above the page and a "Demo" line on each form step say so (`src/content/demoMode.ts`).
-- The €99 checkout screen shows its original disabled "Pay €99" state.
+- Wording marked DRAFT in `src/content/campaign2.ts` and `demoMode.ts` (errors, the confirmation screen, demo
+  notices) was not in the owner's copy and is waiting for it.
 
-## Adapted so the single page holds together (links only, no copy changes)
+## Links and structure
 
-- Every "Start my website" button goes to the form on this page (`#start`), not to the campaign site.
-- Hero "See how it works" → the comparison table (`#compare`); there is no "How it works" section here.
-- Footer nav keeps only the sections that exist: Craft → demos, Offer → table. "How it works" and "FAQ" are left out.
+- Header, mobile menu and footer: Exemple → demos, Opțiuni → table, Aplică → form (`site.nav`); the footer adds
+  "Sună-ne". Every "Cere site gratuit" button goes to the form (`#start`); "Vezi exemplele" to the demos.
+- Section kickers ("Start here", "Free or priority", "Concept Builds", "Next step"), the footer's CTA button and its
+  "Fig. 04" caption were not in the owner's copy and are gone.
 - `/terms` and `/privacy` do not exist here, so `content/legal.ts` marks both unpublished and nothing links to them.
 - The only links leaving localhost: the three demo sites (`solv|cedar|halden.splendessa.com`), opened from the
   demo panel — Splendessa's live demos.
-- Header links (`site.headerNav`): Start here → form, Offer → table, Craft → demos; the button → form. The form's
-  label is its existing kicker "Start here". The footer keeps its own two links (`site.nav`).
 - The form, table and demo sections carry `data-section data-tone="light"` so the header turns light over them, and
-  the form's scroll margin uses the header's offset (it was sized for the campaign's 60px bar).
+  the form's scroll margin uses the header's offset.

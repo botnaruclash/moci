@@ -14,7 +14,6 @@ export function ConceptBuilds() {
       <div className="site-container">
         <div className={styles.intro}>
           <div className={styles.head}>
-            <p className={cx(styles.kicker, "type-meta")}>{concepts.kicker}</p>
             <h2 id="concepts-title" className="type-h2">
               {concepts.title}
             </h2>

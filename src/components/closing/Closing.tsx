@@ -1,5 +1,6 @@
 import { Section } from "@/components/layout/Section";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { CallLink } from "@/components/ui/CallLink";
 import { Threshold } from "@/components/ui/Threshold";
 import { closingCopy } from "@/content/closing";
 import { site } from "@/content/site";
@@ -15,18 +16,21 @@ import { Statement } from "./Statement";
 // Splendessa: the uppercase display-l statement (the blueprint's S8 type), the copy, and the dusk threshold: planes
 // stacked in depth, paper → rose → burgundy → night, handing the page to Launch Night.
 
-const { kicker, statement, line } = closingCopy;
+const { statement, line } = closingCopy;
 
 export function Closing() {
   return (
     <Section id="review" scene="light" className={styles.section}>
       <div className={cx("site-container", styles.body)}>
-        <p className={cx(styles.kicker, "type-meta")}>{kicker}</p>
         <Statement lines={statement} className={cx(styles.statement, "type-display-l")} lineClassName={styles.line} />
         <p className={cx(styles.lead, "type-lead")}>{line}</p>
-        <ButtonLink href={site.cta.href} className={styles.cta}>
-          {site.cta.label}
-        </ButtonLink>
+        {/* moci: the form button and "Sună-ne" (owner's copy). */}
+        <div className={styles.actions}>
+          <ButtonLink href={site.cta.href} className={styles.cta}>
+            {site.cta.label}
+          </ButtonLink>
+          <CallLink />
+        </div>
       </div>
       <Threshold kind="dusk" className={styles.dusk} />
     </Section>

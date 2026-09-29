@@ -667,9 +667,11 @@
 }
 
 .termsNote {
-  margin: 14px 0 0;
+  max-width: 62ch;
+  margin: 14px auto 0; /* moci-web: centred measure for the longer note */
   color: var(--color-muted);
   text-align: center;
+  text-wrap: pretty;
 }
 
 /* ---- Closing and footer (variant B) -------------------------------------------------------
@@ -835,4 +837,55 @@
 
 :global(html[data-flow-step]:not([data-flow-step="form"])) .formSlot {
   margin-top: 0;
+}
+
+/* ---- moci-web: the table's words, its note and its two buttons ------------------------------ */
+
+/* A cell in the owner's words ("Opțional", "Îl conectăm"), in the priority column's accent. */
+.cellText {
+  color: var(--color-burgundy-600);
+}
+
+.compareActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 28px;
+  margin-top: 28px;
+}
+
+/* Phones: a narrower feature column and tighter cells, so "Le configurăm" fits; the column price under its name. */
+.colPrice {
+  display: block;
+  white-space: nowrap;
+}
+
+.colSep {
+  display: none;
+}
+
+@media (max-width: 47.999rem) {
+  .compare thead th:first-child {
+    width: 42%;
+  }
+
+  .compare th,
+  .compare td {
+    padding-inline: 8px;
+  }
+
+  .compare tbody th {
+    padding-left: 12px;
+  }
+}
+
+@media (min-width: 48rem) {
+  .colPrice {
+    display: inline;
+  }
+
+  .colSep {
+    display: inline;
+  }
 }
