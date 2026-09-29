@@ -23,7 +23,12 @@ string, screen-reader label, the demo panel and the page metadata).
 - **Hero and footer art (owner's, 29 Sep 2026):** `public/hero/moci-night-hill.webp` (the >_< mascot on a hilltop
   above the clouds, framed on the mascot at every width) and `public/footer/moci-trail.webp` (the mascot's face at the
   head of a pixel trail, on black; the footer ground is the picture's own black).
-- **Still Splendessa's:** the pixel characters and clouds in `public/campaign2/*`, and the three demo sites with their
+- **Form section ornaments (owner's, 29 Sep 2026):** cut from `reference/moci-form-ornaments.png` into three tight
+  transparent PNGs at the sheet's own resolution (alpha made crisp, no resampling): `public/campaign2/moci-envelope.png`
+  (the mochi in its envelope, on the panel's top-right edge, where the sitting figure was) and
+  `moci-plane-left.png` / `moci-plane-right.png` (either side of the headline, where the pink clouds were).
+- **Still Splendessa's:** the figure on the comparison table (`checkbox-girl.webp`), the girl on the cloud by the demos
+  (`girl-on-cloud*.webp`), the outlined clouds by the table (`cloud-outline.png`), and the three demo sites with their
   captures (`public/demos/*`, live on `*.splendessa.com`).
 
 ```sh

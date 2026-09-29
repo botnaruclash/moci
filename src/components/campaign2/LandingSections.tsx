@@ -28,11 +28,12 @@ export function FormSection() {
   return (
     <section data-section="" data-tone="light" className={styles.hero} aria-labelledby="hero-title">
       <div className={cx("site-container", styles.heroInner)}>
-        {/* Three of the same supplied cloud, at whole-number scales of its 20 × 6 grid, kept clear of the type. */}
-        {(["cloudA", "cloudB", "cloudC"] as const).map((cloud) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img key={cloud} className={cx(styles.cloud, styles[cloud])} src="/campaign2/cloud.png" alt="" aria-hidden="true" width={20} height={6} />
-        ))}
+        {/* moci: two paper planes flying in toward the headline, one either side, kept clear of the type (cut from
+            reference/moci-form-ornaments.png). */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className={cx(styles.plane, styles.planeL)} src="/campaign2/moci-plane-left.png" alt="" aria-hidden="true" width={204} height={159} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className={cx(styles.plane, styles.planeR)} src="/campaign2/moci-plane-right.png" alt="" aria-hidden="true" width={195} height={157} />
         <div className={styles.heroHead}>
           <h2 id="hero-title" className={styles.headline}>
             {hero.headline.map((line) => (
@@ -45,9 +46,10 @@ export function FormSection() {
         </div>
 
         <div id={START_ID} className={styles.formSlot}>
-          {/* The supplied sitting figure, perched on the form's top-right edge: hands on the ledge, legs over it. */}
+          {/* moci: the mochi in its envelope, resting on the panel's top-right edge (cut from
+              reference/moci-form-ornaments.png). */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={styles.sitter} src="/campaign2/sitter.webp" alt="" aria-hidden="true" width={55} height={97} />
+          <img className={styles.envelope} src="/campaign2/moci-envelope.png" alt="" aria-hidden="true" width={548} height={434} />
           <IntakeFlow />
         </div>
       </div>

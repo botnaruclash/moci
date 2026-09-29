@@ -214,22 +214,21 @@
   }
 }
 
-/* ---- Decorations: clouds and the sitting figure ----------------------------------------------
-   Supplied art; masters in design/campaign2. The cloud is true pixel art on a clean 20 × 6 grid, so it is reduced to
-   that grid and drawn only at whole-number scales, nearest-neighbour. The figure's grid is irregular, and reducing it
-   lost detail (the white of one eye), so she is kept as drawn: residue removed, trimmed, and downscaled to three times her
-   largest size with high-quality smoothing — each of her pixels still spans several screen pixels. Everything sits in
-   empty space: above the headline on phones and tablets, beside it on desktop, never over text, fields or buttons. */
+/* ---- Decorations: two paper planes and the mochi in its envelope --------------------------------
+   moci: cut from reference/moci-form-ornaments.png into three tight transparent PNGs at the sheet's own resolution
+   (no resampling in the files; the browser only scales them down). The planes fly in toward the headline from either
+   side; the mochi rests in its envelope on the panel's top-right edge, the envelope's foot tucked just over the edge.
+   Everything sits in empty space — beside the headline on desktop, in the band above it on phones — never over text,
+   prices, fields or buttons. */
 .heroInner {
   position: relative;
 }
 
-.cloud {
+.plane {
   position: absolute;
   z-index: 0;
   max-width: none;
   height: auto;
-  image-rendering: pixelated;
   pointer-events: none;
   user-select: none;
 }
@@ -240,44 +239,41 @@
   z-index: 1;
 }
 
-/* Phones: two small clouds in the band above the headline, the third left out. */
+/* Phones: both planes small in the band above the headline, at its outer edges. */
 .hero {
   padding-top: 44px;
 }
 
-.cloudA {
-  top: -34px;
-  left: 2px;
-  width: 60px; /* 3× */
+.planeL {
+  top: -30px;
+  left: 4px;
+  width: 44px;
 }
 
-.cloudB {
-  display: none;
-}
-
-.cloudC {
-  top: -28px;
+.planeR {
+  top: -38px;
   right: 6px;
-  width: 40px; /* 2× */
+  width: 38px;
 }
 
-/* The figure sits with her hands on the panel's top edge: row 61 of 97 is where the ledge meets her. Below desktop the
-   form drops by her height above the ledge, so her head and shoulders sit in clear space under the line of text. */
+/* The envelope's foot sits --env-tuck over the panel's top edge (its height is 434/548 of its width). Below desktop the
+   form drops by the envelope's height above the edge, so the mochi sits in clear space under the line of text. */
 .formSlot {
   margin-top: 72px;
+  --env-w: 84px;
+  --env-tuck: 10px;
 }
 
-.sitter {
+.envelope {
   position: absolute;
   z-index: 2;
-  top: calc(-61px * var(--sitter-scale));
-  right: 24px;
-  width: calc(55px * var(--sitter-scale));
-  height: calc(97px * var(--sitter-scale));
+  top: calc(var(--env-tuck) - var(--env-w) * 434 / 548);
+  right: 20px;
+  width: var(--env-w);
+  height: auto;
   max-width: none;
   pointer-events: none;
   user-select: none;
-  --sitter-scale: 1;
 }
 
 @media (min-width: 48rem) {
@@ -285,73 +281,75 @@
     padding-top: 64px;
   }
 
-  .cloudA {
+  .planeL {
     top: -40px;
     left: 0;
-    width: 80px; /* 4× */
+    width: 64px;
   }
 
-  .cloudC {
-    top: -30px;
+  .planeR {
+    top: -44px;
     right: 8px;
-    width: 60px; /* 3× */
-  }
-
-  .sitter {
-    right: 32px;
+    width: 56px;
   }
 
   .formSlot {
-    margin-top: 76px;
+    margin-top: 80px;
+    --env-w: 108px;
+    --env-tuck: 12px;
+  }
+
+  .envelope {
+    right: 36px;
   }
 }
 
-/* Desktop: all three clouds beside the headline — two to its left, one to its right — as in the layout reference. */
+/* Desktop: the planes beside the headline, the left one a little higher, both clear of the line of text and of the
+   envelope below. */
 @media (min-width: 64rem) {
   .hero {
     padding-top: 64px;
   }
 
-  .cloudA {
-    top: 8px;
-    left: 0;
-    width: 120px; /* 6× */
+  .planeL {
+    top: 28px;
+    left: 24px;
+    width: 104px;
   }
 
-  .cloudB {
-    display: block;
-    top: 104px;
-    left: 96px;
-    width: 80px; /* 4× */
-  }
-
-  .cloudC {
-    top: 0;
-    right: 32px;
-    width: 100px; /* 5× */
-  }
-
-  .sitter {
-    right: 40px;
-    --sitter-scale: 2;
+  .planeR {
+    top: 72px;
+    right: 24px;
+    width: 88px;
   }
 
   .formSlot {
-    margin-top: 48px;
+    margin-top: 72px;
+    --env-w: 124px;
+    --env-tuck: 14px;
+  }
+
+  .envelope {
+    right: 48px;
   }
 }
 
 @media (min-width: 80rem) {
-  .cloudA {
-    left: 24px;
+  .planeL {
+    left: 64px;
   }
 
-  .cloudB {
-    left: 132px;
+  .planeR {
+    right: 88px;
   }
 
-  .cloudC {
-    right: 40px;
+  .formSlot {
+    --env-w: 148px;
+    --env-tuck: 16px;
+  }
+
+  .envelope {
+    right: 64px;
   }
 }
 
@@ -375,12 +373,12 @@
     animation: settle 440ms var(--ease-out) 180ms both;
   }
 
-  .cloud {
+  .planeL {
     animation: drift-in 600ms var(--ease-out) 120ms both;
   }
 
-  .cloudC {
-    animation-delay: 200ms;
+  .planeR {
+    animation: drift-in-r 600ms var(--ease-out) 200ms both;
   }
 }
 
@@ -388,6 +386,13 @@
   from {
     opacity: 0;
     translate: -8px 0;
+  }
+}
+
+@keyframes drift-in-r {
+  from {
+    opacity: 0;
+    translate: 8px 0;
   }
 }
 
@@ -807,11 +812,11 @@
 }
 
 /* ---- Past the form (IntakeFlow sets html[data-flow-step]) --------------------------------------
-   The landing headline, clouds and sitting figure only introduce the form. Once it's done they give their space to
+   The landing headline, planes and envelope only introduce the form. Once it's done they give their space to
    the result, which then opens at the top of the screen on phones and desktop. */
 :global(html[data-flow-step]:not([data-flow-step="form"])) .heroHead,
-:global(html[data-flow-step]:not([data-flow-step="form"])) .cloud,
-:global(html[data-flow-step]:not([data-flow-step="form"])) .sitter {
+:global(html[data-flow-step]:not([data-flow-step="form"])) .plane,
+:global(html[data-flow-step]:not([data-flow-step="form"])) .envelope {
   display: none;
 }
 
