@@ -8,7 +8,7 @@ import { START_ID } from "./StartLink";
 
 // moci-web: the form section and the comparison table, from the campaign page (get.bytemochi.com,
 // components/campaign2/CampaignPage.tsx), with moci's copy. The form's headline is an <h2> (the Hero holds the <h1>);
-// the section opens on the Gratuit / Premium choice (IntakeFlow), then the form. The table's cells are a check, a cross
+// the section opens on the Premium / Gratuit choice (IntakeFlow), then the form. The table's cells are a check, a cross
 // or the owner's words; its foot row picks a plan for the form (ChoosePlanLink), and a note closes it. The sections carry data-section and
 // data-tone="light" so the header (and anchor scroll-margin) reads them as light sections, as on the brand site. The form never reaches a server.
 
@@ -74,7 +74,7 @@ export function CompareSection() {
         </div>
 
         <div className={styles.tableWrap}>
-          {/* moci: the mochi holding a white check (Gratuit) and a purple one (Premium), resting on the table's top edge
+          {/* moci: the mochi holding a check in each hand, resting on the table's top edge
               where the two columns meet (cut from reference/moci-compare-ornaments.png). */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className={styles.checksMochi} src="/campaign2/moci-checks.png" alt="" aria-hidden="true" width={783} height={292} loading="lazy" decoding="async" />
@@ -85,11 +85,11 @@ export function CompareSection() {
                   <th scope="col" className="type-meta">
                     {compare.columns.feature}
                   </th>
-                  <th scope="col" className={cx(styles.colHead, "type-control")}>
-                    <ColumnHead name={plans.free.name} price={plans.free.price} />
-                  </th>
                   <th scope="col" className={cx(styles.colHead, styles.colPriority, "type-control")}>
                     <ColumnHead name={plans.premium.name} price={plans.premium.price} />
+                  </th>
+                  <th scope="col" className={cx(styles.colHead, "type-control")}>
+                    <ColumnHead name={plans.free.name} price={plans.free.price} />
                   </th>
                 </tr>
               </thead>
@@ -99,11 +99,11 @@ export function CompareSection() {
                     <th scope="row" className={styles.feature}>
                       <span className="type-body">{row.feature}</span>
                     </th>
-                    <td className={styles.cell}>
-                      <Value cell={row.free} />
-                    </td>
                     <td className={cx(styles.cell, styles.cellPriority)}>
                       <Value cell={row.premium} />
+                    </td>
+                    <td className={styles.cell}>
+                      <Value cell={row.free} />
                     </td>
                   </tr>
                 ))}
@@ -113,11 +113,11 @@ export function CompareSection() {
                   <th scope="row" className={styles.feature}>
                     <span className="sr-only">{plans.heading}</span>
                   </th>
-                  <td className={styles.cell}>
-                    <ChoosePlanLink plan="free" />
-                  </td>
                   <td className={cx(styles.cell, styles.cellPriority)}>
                     <ChoosePlanLink plan="premium" />
+                  </td>
+                  <td className={styles.cell}>
+                    <ChoosePlanLink plan="free" />
                   </td>
                 </tr>
               </tfoot>

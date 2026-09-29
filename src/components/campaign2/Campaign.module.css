@@ -409,7 +409,7 @@
   }
 }
 
-/* ---- Gratuit or Premium: one real comparison table -------------------------------------------- */
+/* ---- Premium or Gratuit: one real comparison table -------------------------------------------- */
 
 .compareSection {
   padding-block: var(--section-pad);
@@ -567,9 +567,9 @@
 
 /* ---- Comparison decorations -----------------------------------------------------------------
    moci: cut from reference/moci-compare-ornaments.png into three tight transparent PNGs at the sheet's own
-   resolution. A white check (Gratuit) and a purple one (Premium), with sparkles, sit either side of the heading. The
-   mochi holding both checks rests on the table's top edge, centred where the Gratuit and Premium columns meet — the
-   white check over Gratuit, the purple one over Premium — and never reaches down over the column headings. */
+   resolution. A white and a purple check, with sparkles, sit either side of the heading. The mochi holding both checks
+   rests on the table's top edge, centred where the two plan columns meet, one check over each, and never reaches down
+   over the column headings. */
 .compareInner {
   position: relative;
 }

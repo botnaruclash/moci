@@ -13,7 +13,7 @@ export const site = {
   // Legal pages the site really has: none on this one-page landing yet (content/legal.ts), so nothing links to them.
   legal: publishedLegalLinks as readonly { label: string; href: string }[],
   cta: {
-    label: "Cere site gratuit",
+    label: "Cere site-ul tău",
     // Every CTA on the page goes to the form on it (StartLink's START_ID).
     href: "#start",
   },

@@ -3,7 +3,8 @@
 
 export type Plan = "free" | "premium";
 
-export const PLANS: readonly Plan[] = ["free", "premium"];
+/** Premium is the main offer: it comes first in the cards, the switch on the form and the table. */
+export const PLANS: readonly Plan[] = ["premium", "free"];
 
 export const CHOOSE_PLAN_EVENT = "moci:choose-plan";
 

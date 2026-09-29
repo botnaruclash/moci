@@ -10,7 +10,7 @@ import styles from "./Intake.module.css";
 import { CHOOSE_PLAN_EVENT, PLANS, type Plan } from "./plan";
 
 // moci-web: the landing's request (owner's brief, 29 Sep 2026), in the campaign form's panel and styles. It opens on
-// two cards — Gratuit · 0 MDL and Premium · 1.999 MDL. Once one is chosen the same short form follows for both, with the
+// two cards — Premium · 2.000 MDL first, then Gratuit · 0 MDL. Once one is chosen the same short form follows for both, with the
 // choice kept on top of it as a two-way switch, so the plan can change without losing anything typed. The table's
 // buttons (ChoosePlanLink) pick a plan from further down. A local demo: sending only validates, then says plainly that
 // nothing was saved or sent. No database, no alerts, no payment, no tracking.
