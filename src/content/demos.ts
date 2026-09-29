@@ -31,7 +31,7 @@ export const demoSites: readonly DemoSite[] = [
     url: "https://solv.splendessa.com/",
     kind: "Clinică de medicină estetică",
     description:
-      "O pagină calmă, cu accent pe medic: fotografie mare în deschidere, proceduri cu durate și prețuri și un singur drum clar spre programarea unei consultații.",
+      "Un site calm, cu accent pe medic: fotografie mare în deschidere, proceduri cu durate și prețuri și un singur drum clar spre programarea unei consultații.",
     image: "/demos/solv-desktop.webp",
     alt: "Pagina principală Sölv: fotografia unei femei cu ochii închiși într-un cabinet, deasupra titlului „Skin, in its own light.”",
     labelAt: "top",

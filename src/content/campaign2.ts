@@ -14,18 +14,14 @@ export const campaign = {
   plans: {
     heading: "Alege varianta",
     // The page's one mention that nothing is paid on the site.
-    lead: "Același formular pentru ambele, fără plată pe site. Poți schimba varianta până trimiți cererea.",
+    lead: "Același formular pentru ambele, fără plată pe site. Poți schimba varianta oricând până trimiți.",
     chosen: "Varianta aleasă",
     premium: {
       name: "Premium",
       price: "2.000 MDL",
-      points: [
-        "Site de prezentare pe domeniul tău",
-        "Rezervări online pentru o persoană / un calendar",
-        "Adaptat pentru mobil",
-      ],
-      fine: "Domeniul îl cumperi separat, pe contul tău. Noi îl configurăm și îți oferim acces.",
-      summary: "Site pe domeniul tău, cu rezervări online pentru o persoană / un calendar. Domeniul îl cumperi separat.",
+      points: ["Site pe domeniul tău", "Rezervări online pentru clienții tăi", "Arată impecabil pe telefon"],
+      fine: "Domeniul îl cumperi tu, pe contul tău. Noi îl configurăm.",
+      summary: "Site pe domeniul tău, cu rezervări online.",
       choose: "Alege Premium",
       submit: "Trimite cererea Premium",
       note: "Stabilim plata după ce discutăm proiectul.",
@@ -33,14 +29,9 @@ export const campaign = {
     free: {
       name: "Gratuit",
       price: "0 MDL",
-      points: [
-        "Site de prezentare pe afacerea.moci.md",
-        "Buton de contact pe Instagram sau WhatsApp",
-        "Adaptat pentru mobil",
-        "Treci oricând la Premium, cu același site",
-      ],
-      fine: "Garantat pentru afacerile reale de servicii. Nu ai nevoie de o pagină socială.",
-      summary: "Site pe afacerea.moci.md, cu buton de contact pe Instagram sau WhatsApp. Treci oricând la Premium.",
+      points: ["Site pe afacerea.moci.md", "Clienții te contactează pe WhatsApp sau Instagram", "Treci oricând la Premium"],
+      fine: "Garantat pentru afacerile reale de servicii.",
+      summary: "Site pe afacerea.moci.md, cu contact prin WhatsApp sau Instagram.",
       choose: "Alege Gratuit",
       submit: "Trimite cererea gratuită",
       note: "Rămâne gratuit cât stai pe subdomeniu.",
@@ -54,7 +45,7 @@ export const campaign = {
     presence: { label: "Instagram, Facebook sau site", optional: "(opțional, dacă ai)" },
     phone: { label: "Telefon" },
     details: { label: "Alte detalii", optional: "(opțional)" },
-    steps: "Trimiți cererea → te contactăm → ne trimiți materialele → prima versiune în aproximativ 3 ore.",
+    steps: "Trimiți cererea → te contactăm → ne trimiți materialele → site-ul e gata în mai puțin de 3 ore.",
     sending: "Se verifică…",
     errors: {
       business: "Scrie numele afacerii.",
@@ -72,7 +63,7 @@ export const campaign = {
   },
 
   compare: {
-    title: "Premium sau Gratuit. Același site, făcut bine.",
+    title: "Pe domeniul tău. Sau începi gratuit.",
     // The column headings are the plans' "name · price" (set on two lines below 1280px), Premium first; the foot row
     // picks a plan.
     columns: { feature: "Primești" },
@@ -81,12 +72,12 @@ export const campaign = {
     yes: "Da",
     no: "Nu",
     rows: [
-      { feature: "Site de prezentare cu o pagină", premium: true, free: true },
+      { feature: "Site de prezentare", premium: true, free: true },
       { feature: "Adaptat pentru mobil", premium: true, free: true },
       { feature: "Adresa site-ului", premium: "Domeniul tău", free: "Subdomeniu moci.md" },
       { feature: "Rezervări online, pentru o persoană / un calendar", premium: "Configurate", free: false },
     ] satisfies { feature: string; premium: Cell; free: Cell }[],
-    note: "Domeniul pentru Premium îl cumperi separat, pe contul tău; noi îl configurăm și îți oferim acces. Dacă începi gratuit, treci oricând la Premium cu același site. Pachetele nu includ magazin online sau vânzare de produse.",
+    note: "Domeniul pentru Premium îl cumperi pe contul tău; noi îl configurăm. Dacă începi gratuit, treci oricând la Premium cu același site. Pachetele nu includ magazin online sau vânzare de produse.",
   },
 
   concepts: {

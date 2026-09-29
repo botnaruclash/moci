@@ -15,7 +15,7 @@ import { NightScene } from "./NightScene";
 // Splendessa: the supplied launch scene as the footer's stage, with the information set in its empty sky, the supplied
 // logo (white lockup), and only the links this project actually has — the nav, the site CTA and the copyright.
 
-const { line, navLabel } = footerCopy;
+const { navLabel } = footerCopy;
 
 export function LaunchNight() {
   return (
@@ -26,7 +26,6 @@ export function LaunchNight() {
             <p className={styles.wordmark}>
               <Logo className={styles.logo} label={site.name} />
             </p>
-            <p className={cx(styles.line, "type-lead")}>{line}</p>
           </div>
 
           <div className={styles.actions}>
