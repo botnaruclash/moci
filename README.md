@@ -31,8 +31,10 @@ string, screen-reader label, the demo panel and the page metadata).
   `public/campaign2/moci-checks.png` (the mochi holding a white and a purple check, resting on the table's top edge
   where the Gratuit and Premium columns meet) and `moci-check-left.png` / `moci-check-right.png` (either side of the
   heading, where the outlined clouds were).
-- **Still Splendessa's:** the girl on the cloud by the demos (`girl-on-cloud*.webp`) and the three demo sites with
-  their captures (`public/demos/*`, live on `*.splendessa.com`).
+- **Demos ornament (owner's, 29 Sep 2026):** `public/campaign2/moci-folder.webp` (the mochi with a folder of site
+  pages, cut from `reference/moci-demos-ornament.png`, lossless WebP), opposite the demos heading where the girl on the
+  cloud was.
+- **Still Splendessa's:** the three demo sites with their captures (`public/demos/*`, live on `*.splendessa.com`).
 
 ```sh
 npm install

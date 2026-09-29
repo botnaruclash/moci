@@ -19,17 +19,16 @@ export function ConceptBuilds() {
             </h2>
             <p className={cx(styles.lead, "type-body")}>{concepts.lead}</p>
           </div>
-          {/* Variant B: the supplied girl-on-cloud, opposite the heading and above the cards. Decorative. */}
+          {/* moci: the mochi with a folder of site pages, opposite the heading and above the cards. Decorative (cut from
+              reference/moci-demos-ornament.png). */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            className={styles.cloudGirl}
-            src="/campaign2/girl-on-cloud.webp"
-            srcSet="/campaign2/girl-on-cloud.webp 960w, /campaign2/girl-on-cloud-1440.webp 1440w"
-            sizes="(min-width: 64rem) 480px, (min-width: 48rem) 360px, min(78vw, 300px)"
+            className={styles.mochiFolder}
+            src="/campaign2/moci-folder.webp"
             alt=""
             aria-hidden="true"
-            width={960}
-            height={514}
+            width={1277}
+            height={855}
             loading="lazy"
             decoding="async"
           />
