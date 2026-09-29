@@ -1,7 +1,14 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Splendessa v6 · design tokens (Phase 0)
+   moci · design tokens (first identity pass, 29 Sep 2026)
+
+   Colours come from the >_< mark (bytemochi-web/Bytemochi, 01-masters, sampled pixel by pixel):
+     teal  #0c4476  the gradient's top-left
+     navy  #1e2165  its middle (the package manifest's theme colour is #182267)
+     purple #552785 its bottom-right
+     white #fcfcfc  the glyph
+   Every other colour is one of these mixed with white or black. Text pairs are checked at ≥ 4.5:1.
 
    Spacing: a 12px cell with a 6px half-cell. The grid is the default, not a
    law — type, borders, optical alignment and responsive composition may step
@@ -11,23 +18,28 @@
 @theme static {
   /* Only brand colours exist; Tailwind's default palette is removed. */
   --color-*: initial;
-  --color-paper: #fffcfa;
-  --color-paper-2: #f7f0ee;
-  --color-ink: #151012;
-  --color-ink-2: #3d3337;
-  --color-muted: #74666b;
-  --color-rose-50: #fdf1f3;
-  --color-rose-200: #f6cad4;
-  --color-rose-400: #e495a8;
-  --color-burgundy-600: #7c1734;
-  --color-burgundy-800: #4b0e21;
-  --color-night: #120b0e;
+  --color-paper: #fcfcfc; /* the glyph's white */
+  --color-paper-2: #f1f1f4; /* paper + 5% navy */
+  --color-ink: #0f1032; /* navy + 50% black — 17.9:1 on paper */
+  --color-ink-2: #30314e; /* 12.2:1 on paper */
+  --color-ink-edge: #26285a; /* the dark button's hairline */
+  --color-muted: #616392; /* navy + 30% white — 5.5:1 on paper, 5.0:1 on lilac-50 */
+  --color-lilac-50: #f2eff5; /* paper + 6% purple: the form panel, the tinted column */
+  --color-lilac-200: #d7cde2; /* paper + 22% purple */
+  --color-lilac-400: #ac96c3; /* paper + 48% purple — never for text on light */
+  --color-indigo-600: #552785; /* the mark's purple: the accent — 10.2:1 on paper */
+  --color-indigo-800: #1e2165; /* the mark's navy */
+  --color-teal-700: #0c4476; /* the mark's teal: the gradient's first stop */
+  --color-night: #0b0d26; /* navy + 62% black */
+  --color-night-muted: #b9b8d0; /* secondary text on night and on the footer art's ground */
   /* Functional only, never brand accents: live = status and success; flash = pixel heat / launch bursts (≤1% of pixels).
-     Burgundy is the brand accent. Use rose-400 sparingly. */
+     Indigo is the brand accent. Use lilac-400 sparingly. */
   --color-live: #2e9e63;
   --color-flash: #ff5c7a;
 
-  --font-sans: var(--font-host-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Headings, buttons, navigation, prices. */
+  --font-display: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
   --font-meta: var(--font-departure-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   /* One spacing unit = half a cell, so p-2 = 12px = 1 cell. */
@@ -43,15 +55,16 @@
   /* Type scale. Use through the type-* utilities below, which add case and weight. */
   --text-*: initial;
   --text-display-xl: clamp(3.25rem, 7.8vw, 7rem);
-  --text-display-xl--line-height: 0.92;
+  --text-display-xl--line-height: 1; /* moci: room for Ă Â Î above a line of mono caps */
   --text-display-xl--letter-spacing: -0.035em;
-  --text-display-l: clamp(3.5rem, 10vw, 9rem);
-  --text-display-l--line-height: 0.9;
+  /* moci: the mono face is wider — 12.5vw keeps an 11-character line ("AFACEREA TA") on a 390px phone. */
+  --text-display-l: clamp(2.5rem, 12.5vw, 8rem);
+  --text-display-l--line-height: 0.98;
   --text-display-l--letter-spacing: -0.04em;
   --text-display-m: clamp(2.125rem, 4.45vw, 4rem);
   --text-display-m--line-height: 1.02;
   --text-display-m--letter-spacing: -0.03em;
-  --text-h2: clamp(2.125rem, 3.4vw, 3rem);
+  --text-h2: clamp(1.75rem, 3.2vw, 2.75rem);
   --text-h2--line-height: 1.06;
   --text-h2--letter-spacing: -0.02em;
   --text-h3: clamp(1.25rem, 1.67vw, 1.5rem);
@@ -93,6 +106,14 @@
 }
 
 :root {
+  /* The same colours as channels, for translucent lines and washes: rgb(var(--ink-rgb) / 0.1). */
+  --ink-rgb: 15 16 50;
+  --paper-rgb: 252 252 252;
+  --night-rgb: 11 13 38;
+  --accent-rgb: 85 39 133;
+  /* The mark's own gradient, for the primary buttons and the logo's surroundings. */
+  --brand-gradient: linear-gradient(135deg, #0c4476 0%, #1e2165 52%, #552785 100%);
+
   /* Container: 1248px is the audit-derived starting candidate. Tune it by eye at 1440 and 390 in /lab/grid. */
   --site-max: 1248px;
   --site-gutter: 24px;
@@ -160,43 +181,43 @@
     --scene-fg: var(--color-ink);
     --scene-fg-2: var(--color-ink-2);
     --scene-muted: var(--color-muted);
-    --scene-line: rgb(21 16 18 / 0.12);
+    --scene-line: rgb(var(--ink-rgb) / 0.12);
     --scene-frame: var(--color-paper-2);
     --scene-surface: var(--color-paper);
-    --scene-accent: var(--color-burgundy-600);
+    --scene-accent: var(--color-indigo-600);
   }
 
-  [data-scene="rose"] {
-    --scene-bg: var(--color-rose-50);
+  [data-scene="lilac"] {
+    --scene-bg: var(--color-lilac-50);
     --scene-fg: var(--color-ink);
     --scene-fg-2: var(--color-ink-2);
-    --scene-muted: #6c5c62;
-    --scene-line: rgb(21 16 18 / 0.12);
-    --scene-frame: var(--color-rose-200);
+    --scene-muted: var(--color-muted);
+    --scene-line: rgb(var(--ink-rgb) / 0.12);
+    --scene-frame: var(--color-lilac-200);
     --scene-surface: var(--color-paper);
-    --scene-accent: var(--color-burgundy-600);
+    --scene-accent: var(--color-indigo-600);
   }
 
-  [data-scene="burgundy"] {
-    --scene-bg: var(--color-burgundy-600);
+  [data-scene="indigo"] {
+    --scene-bg: var(--color-indigo-600);
     --scene-fg: var(--color-paper);
-    --scene-fg-2: #fbe9ed;
-    --scene-muted: var(--color-rose-200);
-    --scene-line: rgb(255 252 250 / 0.2);
-    --scene-frame: var(--color-burgundy-800);
-    --scene-surface: var(--color-burgundy-800);
-    --scene-accent: var(--color-rose-200);
+    --scene-fg-2: #ece8f3;
+    --scene-muted: var(--color-lilac-200);
+    --scene-line: rgb(var(--paper-rgb) / 0.2);
+    --scene-frame: var(--color-indigo-800);
+    --scene-surface: var(--color-indigo-800);
+    --scene-accent: var(--color-lilac-200);
   }
 
   [data-scene="night"] {
     --scene-bg: var(--color-night);
     --scene-fg: var(--color-paper);
-    --scene-fg-2: #e9dee1;
-    --scene-muted: #a8979d;
-    --scene-line: rgb(255 252 250 / 0.14);
-    --scene-frame: #221a1d;
-    --scene-surface: #1a1215;
-    --scene-accent: var(--color-rose-400);
+    --scene-fg-2: #e3e2ee;
+    --scene-muted: var(--color-night-muted);
+    --scene-line: rgb(var(--paper-rgb) / 0.14);
+    --scene-frame: #1a1c3d;
+    --scene-surface: #131533;
+    --scene-accent: var(--color-lilac-400);
   }
 
   [data-scene] {
@@ -241,6 +262,7 @@
 
 /* Type roles: size, leading and tracking from the tokens, plus case and weight. */
 @utility type-display-xl {
+  font-family: var(--font-display);
   font-size: var(--text-display-xl);
   line-height: var(--text-display-xl--line-height);
   letter-spacing: var(--text-display-xl--letter-spacing);
@@ -250,6 +272,7 @@
 }
 
 @utility type-display-l {
+  font-family: var(--font-display);
   font-size: var(--text-display-l);
   line-height: var(--text-display-l--line-height);
   letter-spacing: var(--text-display-l--letter-spacing);
@@ -259,6 +282,7 @@
 }
 
 @utility type-display-m {
+  font-family: var(--font-display);
   font-size: var(--text-display-m);
   line-height: var(--text-display-m--line-height);
   letter-spacing: var(--text-display-m--letter-spacing);
@@ -267,6 +291,7 @@
 }
 
 @utility type-h2 {
+  font-family: var(--font-display);
   font-size: var(--text-h2);
   line-height: var(--text-h2--line-height);
   letter-spacing: var(--text-h2--letter-spacing);
@@ -275,6 +300,7 @@
 }
 
 @utility type-h3 {
+  font-family: var(--font-display);
   font-size: var(--text-h3);
   line-height: var(--text-h3--line-height);
   letter-spacing: var(--text-h3--letter-spacing);

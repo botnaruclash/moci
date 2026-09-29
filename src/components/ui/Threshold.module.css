@@ -1,7 +1,7 @@
 /* The threshold between two scenes, Reference 1's mechanic: a thin flat band of bars stepping in colour from the
    scene above into the scene below, separated by hairline gaps in the destination's own colour. Nothing else — no
    shadows, no insets, no teeth. Measured on the reference: five 6px bars with 2px gaps, 38px in all.
-   Dusk is Splendessa's own version of the same idea for the page's last seam: the bars thicken as they darken, over
+   Dusk is the page's own version of the same idea for the page's last seam: the bars thicken as they darken, over
    constant paper gaps, so night arrives as a weight rather than a line. */
 
 .threshold {
@@ -31,39 +31,28 @@
   background-color: var(--t-5);
 }
 
-/* The Hero's art into the burgundy scene. The reference's seam hands a dark image to a white page, and its light
-   comes from that; these two scenes are both dark — measured at the live seam, the luminance either side differed
-   by 0.003, so the band could ramp all it liked and stay invisible. The light has to come from the gaps instead,
-   which is what the other two seams already do. The bars step evenly from the art's own dark into the burgundy. */
-.threshold[data-kind="art-burgundy"] {
-  --t-gap: color-mix(in srgb, var(--color-rose-200) 62%, var(--color-burgundy-600));
-  --t-1: #0e0912; /* the Hero picture's own pier, at its bottom edge */
-  --t-2: color-mix(in srgb, #0e0912 75%, var(--color-burgundy-600));
-  --t-3: color-mix(in srgb, #0e0912 50%, var(--color-burgundy-600));
-  --t-4: color-mix(in srgb, #0e0912 25%, var(--color-burgundy-600));
-  --t-5: var(--color-burgundy-600);
-}
-
-/* The burgundy scene into the rose panel's paper ground. Even steps, as the reference's are: its five bars walk
-   the whole way from the departing colour to within a step of the arriving one, rather than holding the dark for
-   half the band and then jumping. */
-.threshold[data-kind="burgundy-rose"] {
+/* The Hero's art into the page's paper (moci). The section below the Hero is light, so the seam hands a dark image
+   to a light page, as the reference's does: five bars walk from the picture's own dark through the mark's navy and
+   purple to a pale lilac, over hairline gaps in the paper they arrive at. (It used to end on a burgundy band that
+   belonged to no section, which read as a stray stripe.) */
+.threshold[data-kind="art-paper"] {
   --t-gap: var(--color-paper);
-  --t-1: var(--color-burgundy-600);
-  --t-2: color-mix(in srgb, var(--color-burgundy-600) 72%, var(--color-rose-400));
-  --t-3: color-mix(in srgb, var(--color-burgundy-600) 40%, var(--color-rose-400));
-  --t-4: color-mix(in srgb, var(--color-rose-400) 70%, var(--color-rose-200));
-  --t-5: color-mix(in srgb, var(--color-rose-200) 70%, var(--color-paper));
+  --t-1: #0e0912; /* the Hero picture's own pier, at its bottom edge */
+  --t-2: var(--color-indigo-800);
+  --t-3: var(--color-indigo-600);
+  --t-4: var(--color-lilac-400);
+  --t-5: var(--color-lilac-200);
 }
 
-/* Dusk: the page's last light into Launch Night. */
+/* Dusk: the page's last light into Launch Night — paper through the mark's purple and navy to the footer art's own
+   ground (#12090b, kept until the pixel scenes are replaced, so no seam shows against the picture). */
 .threshold[data-kind="dusk"] {
   grid-template-rows: 6px 12px 18px 24px 36px;
   row-gap: 6px;
   --t-gap: var(--color-paper);
-  --t-1: var(--color-rose-200);
-  --t-2: var(--color-rose-400);
-  --t-3: color-mix(in srgb, var(--color-burgundy-600) 80%, var(--color-rose-400));
-  --t-4: var(--color-burgundy-600);
-  --t-5: var(--color-night);
+  --t-1: var(--color-lilac-200);
+  --t-2: var(--color-lilac-400);
+  --t-3: var(--color-indigo-600);
+  --t-4: var(--color-indigo-800);
+  --t-5: #12090b;
 }

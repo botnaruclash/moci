@@ -66,16 +66,14 @@
   }
 }
 
-/* The supplied Splendessa logo (white lockup). */
+/* moci's logo: the >_< symbol and the name in white. */
 .wordmark {
   margin: 0;
 }
 
-/* The white lockup, as tall as the display-m line it replaces. */
+/* The name at the display-m size it replaces; the symbol a quarter larger. */
 .logo {
-  display: block;
-  height: var(--text-display-m);
-  aspect-ratio: 750.1 / 160;
+  font-size: var(--text-display-m);
   color: #ffffff;
 }
 

@@ -36,7 +36,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  border-bottom: 1px solid rgb(21 16 18 / 0.1);
+  border-bottom: 1px solid rgb(var(--ink-rgb) / 0.1);
 }
 
 /* The list takes focus when the sheet opens (MobileMenu.tsx) only so the next Tab starts inside it; it is not a
@@ -46,7 +46,7 @@
 }
 
 .item {
-  border-top: 1px solid rgb(21 16 18 / 0.1);
+  border-top: 1px solid rgb(var(--ink-rgb) / 0.1);
   opacity: 0;
   clip-path: inset(-8px 100% -8px -8px);
 }
@@ -62,6 +62,7 @@
 
 /* The section in view is dark, the rest muted (≥3:1 for large text). */
 .link {
+  font-family: var(--font-display);
   display: flex;
   align-items: baseline;
   gap: 16px;

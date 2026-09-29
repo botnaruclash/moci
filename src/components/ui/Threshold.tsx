@@ -2,7 +2,7 @@ import { cx } from "@/lib/cx";
 import styles from "./Threshold.module.css";
 
 /** Which two scenes the threshold hands over between; the colours live in Threshold.module.css. */
-export type ThresholdKind = "art-burgundy" | "burgundy-rose" | "dusk";
+export type ThresholdKind = "art-paper" | "dusk";
 
 const BARS = 5;
 

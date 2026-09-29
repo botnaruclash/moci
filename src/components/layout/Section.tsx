@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 
 /** "art" is an illustrated scene (the Hero): no scene colours of its own, dark header tone. */
-export type Scene = "light" | "rose" | "burgundy" | "night" | "art";
+export type Scene = "light" | "lilac" | "indigo" | "night" | "art";
 
-const darkScenes = new Set<Scene>(["burgundy", "night", "art"]);
+const darkScenes = new Set<Scene>(["indigo", "night", "art"]);
 
 /** A page section with a colour scene. The header reads data-tone to switch between light and dark. */
 export function Section({

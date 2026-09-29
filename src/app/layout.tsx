@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { GridOverlay } from "@/components/dev/GridOverlay";
-import { departureMono, hostGrotesk } from "@/lib/fonts";
+import { departureMono, inter, jetbrainsMono } from "@/lib/fonts";
 import { labEnabled } from "@/lib/lab";
 import { GET_URL } from "@/lib/sites";
 import "@/styles/globals.css";
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ro" className={`${hostGrotesk.variable} ${departureMono.variable}`}>
+    <html lang="ro" className={`${inter.variable} ${jetbrainsMono.variable} ${departureMono.variable}`}>
       <body data-scene="light">
         {children}
         {labEnabled && <GridOverlay />}

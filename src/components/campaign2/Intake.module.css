@@ -7,9 +7,9 @@
   gap: 16px;
   padding: 14px 16px calc(24px + env(safe-area-inset-bottom));
   scroll-margin-top: var(--header-offset); /* moci-web: was 64px, for the campaign's 60px bar */
-  border: 1px solid rgb(21 16 18 / 0.08);
+  border: 1px solid rgb(var(--ink-rgb) / 0.08);
   border-radius: 20px;
-  background-color: var(--color-rose-50);
+  background-color: var(--color-lilac-50);
 }
 
 @media (min-width: 48rem) {
@@ -53,7 +53,7 @@
   .submitRow {
     grid-column: 1 / -1;
     padding-top: 28px;
-    border-top: 1px solid rgb(21 16 18 / 0.1);
+    border-top: 1px solid rgb(var(--ink-rgb) / 0.1);
   }
 }
 
@@ -88,7 +88,7 @@
   width: 100%;
   height: 48px;
   padding: 0 14px;
-  border: 1px solid rgb(21 16 18 / 0.18);
+  border: 1px solid rgb(var(--ink-rgb) / 0.18);
   border-radius: 8px;
   background-color: var(--color-paper);
   color: var(--color-ink);
@@ -98,7 +98,7 @@
 }
 
 .input::placeholder {
-  color: rgb(21 16 18 / 0.36);
+  color: rgb(var(--ink-rgb) / 0.36);
 }
 
 .textarea {
@@ -110,24 +110,24 @@
 }
 
 .input:hover {
-  border-color: rgb(21 16 18 / 0.32);
+  border-color: rgb(var(--ink-rgb) / 0.32);
 }
 
 .input:focus-visible {
   outline: none;
-  border-color: var(--color-burgundy-600);
-  box-shadow: 0 0 0 3px rgb(124 23 52 / 0.16);
+  border-color: var(--color-indigo-600);
+  box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.16);
 }
 
 .input[aria-invalid="true"] {
-  border-color: var(--color-burgundy-600);
+  border-color: var(--color-indigo-600);
 }
 
 .error {
   display: flex;
   gap: 8px;
   margin: 0;
-  color: var(--color-burgundy-600);
+  color: var(--color-indigo-600);
 }
 
 /* A 2px pixel "!" before each error, in the site's pixel language. */
@@ -137,7 +137,7 @@
   width: 2px;
   height: 10px;
   margin-top: 6px;
-  background: linear-gradient(var(--color-burgundy-600) 0 6px, transparent 6px 8px, var(--color-burgundy-600) 8px);
+  background: linear-gradient(var(--color-indigo-600) 0 6px, transparent 6px 8px, var(--color-indigo-600) 8px);
 }
 
 .reveal {
@@ -176,6 +176,7 @@
 .primary,
 .secondary,
 .primaryPaper {
+  font-family: var(--font-display);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -194,9 +195,9 @@
 }
 
 .primary {
-  border-color: #2b2328;
+  border-color: var(--color-ink-edge);
   background-color: var(--color-ink);
-  background-image: linear-gradient(90deg, rgb(255 252 250 / 0) 0%, rgb(255 252 250 / 0.12) 100%);
+  background-image: var(--brand-gradient); /* moci: the mark's own gradient */
   color: var(--color-paper);
 }
 
@@ -217,7 +218,7 @@
 }
 
 .secondary:hover {
-  background-color: rgb(21 16 18 / 0.04);
+  background-color: rgb(var(--ink-rgb) / 0.04);
 }
 
 .primary:active,
@@ -234,7 +235,7 @@
 
 .primary:focus-visible,
 .secondary:focus-visible {
-  outline: 2px solid var(--color-burgundy-600);
+  outline: 2px solid var(--color-indigo-600);
   outline-offset: 2px;
 }
 
@@ -271,7 +272,7 @@
 }
 
 .chooseHeading:focus-visible {
-  outline: 2px solid var(--color-burgundy-600);
+  outline: 2px solid var(--color-indigo-600);
   outline-offset: 4px;
 }
 
@@ -293,7 +294,7 @@
 }
 
 .edit:focus-visible {
-  outline: 2px solid var(--color-burgundy-600);
+  outline: 2px solid var(--color-indigo-600);
   outline-offset: 2px;
 }
 
@@ -319,7 +320,7 @@
   flex-direction: column;
   gap: 10px;
   padding: 16px;
-  border: 1px solid rgb(21 16 18 / 0.14);
+  border: 1px solid rgb(var(--ink-rgb) / 0.14);
   border-radius: 12px;
   background-color: var(--color-paper);
 }
@@ -327,10 +328,11 @@
 /* Priority leads: a heavier ink frame and the burgundy price; Free keeps the plain card and outlined button. */
 .optionPriority {
   border: 2px solid var(--color-ink);
-  box-shadow: 0 1px 0 rgb(21 16 18 / 0.04), 0 8px 24px -16px rgb(21 16 18 / 0.35);
+  box-shadow: 0 1px 0 rgb(var(--ink-rgb) / 0.04), 0 8px 24px -16px rgb(var(--ink-rgb) / 0.35);
 }
 
 .optionName {
+  font-family: var(--font-display);
   margin: 0;
   color: var(--color-ink);
 }
@@ -367,6 +369,7 @@
 }
 
 .price {
+  font-family: var(--font-display);
   color: var(--color-ink);
 }
 
@@ -380,7 +383,7 @@
 }
 
 .optionPriority .price {
-  color: var(--color-burgundy-600);
+  color: var(--color-indigo-600);
 }
 
 .option .secondary {
@@ -407,9 +410,9 @@
 .previewStamp {
   margin: 0;
   padding: 3px 8px;
-  border: 1px dashed var(--color-burgundy-600);
+  border: 1px dashed var(--color-indigo-600);
   border-radius: 4px;
-  color: var(--color-burgundy-600);
+  color: var(--color-indigo-600);
 }
 
 .resultText {
@@ -436,7 +439,7 @@
 }
 
 .summary div + div {
-  border-top: 1px solid rgb(21 16 18 / 0.1);
+  border-top: 1px solid rgb(var(--ink-rgb) / 0.1);
 }
 
 .summary dt {
@@ -524,6 +527,7 @@
 
 /* A radio drawn as a pill; the chosen one is ink. Name and price on two lines on phones, one from 768px. */
 .planPill {
+  font-family: var(--font-display);
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -532,7 +536,7 @@
   gap: 0 8px;
   min-height: 52px;
   padding: 6px 10px;
-  border: 1px solid rgb(21 16 18 / 0.18);
+  border: 1px solid rgb(var(--ink-rgb) / 0.18);
   border-radius: 8px;
   background-color: var(--color-paper);
   color: var(--color-ink-2);
@@ -551,7 +555,7 @@
 }
 
 .planPill:hover {
-  border-color: rgb(21 16 18 / 0.32);
+  border-color: rgb(var(--ink-rgb) / 0.32);
 }
 
 .planPill:has(input:checked) {
@@ -561,7 +565,7 @@
 }
 
 .planPill:has(input:focus-visible) {
-  outline: 2px solid var(--color-burgundy-600);
+  outline: 2px solid var(--color-indigo-600);
   outline-offset: 2px;
 }
 

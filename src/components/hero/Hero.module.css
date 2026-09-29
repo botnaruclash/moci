@@ -5,7 +5,7 @@
   position: relative;
   color: var(--color-paper);
   background-color: #0e0912; /* the picture's pier, at its bottom edge */
-  --scene-accent: var(--color-rose-200); /* visible focus rings over the art */
+  --scene-accent: var(--color-lilac-200); /* visible focus rings over the art */
   --card-room: 0px;
   /* Phones and tablets: one screen — the screen as it opens, bars shown — with the card resting at its foot, and
      nothing pinned: the Hero is a still picture that scrolls away like the rest of the page. The height is held in
@@ -120,14 +120,15 @@
 }
 
 .headline {
+  font-family: var(--font-display);
   margin: 0;
   /* The 12.8vw cap only bites below ~345px, where "MADE FOR YOU." would otherwise run past the screen. */
   font-size: min(clamp(2.75rem, 5.2vw, 5.125rem), 12.8vw);
-  line-height: 0.92;
+  line-height: 1.12; /* moci: the breve of Ă clears the line above, glow included */
   letter-spacing: -0.035em;
   font-weight: 400;
   text-transform: uppercase;
-  text-shadow: 0 0 5px rgb(255 252 250 / 0.8); /* Reference 1 title glow */
+  text-shadow: 0 0 5px rgb(var(--paper-rgb) / 0.8); /* Reference 1 title glow */
 }
 
 .headlineLine {
@@ -136,6 +137,7 @@
 }
 
 .descriptor {
+  font-family: var(--font-display);
   margin: 20px 0 0;
   font-size: clamp(15px, 1.45vw, 20px);
   line-height: 1.3;
@@ -186,9 +188,9 @@
   gap: 12px;
   width: 100%;
   padding: 20px;
-  border: 1px solid rgb(255 252 250 / 0.2);
+  border: 1px solid rgb(var(--paper-rgb) / 0.2);
   border-radius: 16px;
-  background-image: linear-gradient(to right, rgb(21 16 18 / 0.28), rgb(21 16 18 / 0.18));
+  background-image: linear-gradient(to right, rgb(var(--ink-rgb) / 0.28), rgb(var(--ink-rgb) / 0.18));
   color: var(--color-paper);
   pointer-events: auto;
 }
@@ -199,7 +201,7 @@
    where no text sits, and the scrim above carries that. */
 @media (hover: hover) and (pointer: fine) {
   .card {
-    background-image: linear-gradient(to right, rgb(21 16 18 / 0.2), rgb(21 16 18 / 0.1));
+    background-image: linear-gradient(to right, rgb(var(--ink-rgb) / 0.2), rgb(var(--ink-rgb) / 0.1));
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
   }

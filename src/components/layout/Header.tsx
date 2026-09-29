@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { Logo } from "@/components/ui/Logo";
 import { site } from "@/content/site";
 import { MobileMenu } from "./MobileMenu";
 import styles from "./Header.module.css";
@@ -129,7 +130,7 @@ export function Header({ initialTone = "light" }: { initialTone?: Tone }) {
             history.replaceState(null, "", "/");
           }}
         >
-          <span className={styles.logoMark} aria-hidden="true" />
+          <Logo className={styles.logoLockup} />
         </Link>
 
         <ul className={styles.links}>

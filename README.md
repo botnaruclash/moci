@@ -2,9 +2,27 @@
 
 One landing page at `/`, assembled from the two Splendessa copies in `~/Desktop/bytemochi-web` (used as a source
 only, never modified), now carrying moci's Romanian copy (owner's copy, 29 Sep 2026; full Romanian text pass on 29 Sep 2026: every visible
-string, screen-reader label, the demo panel and the page metadata). Still Splendessa's: the logo
-(header mark, footer lockup), favicon/icons, share image, colours, fonts, illustrations, and the three demo sites
-(the sites themselves are English; their cards and panel are Romanian and say they are demo concepts).
+string, screen-reader label, the demo panel and the page metadata).
+
+## Identity — first moci pass (29 Sep 2026)
+
+- **Logo:** the `>_<` symbol from `bytemochi-web/Bytemochi` (symbol only, raster, extracted from one JPG; the package's
+  file names still say "splendessa"). The source master's grey JPG fringe was removed (edge only, nothing inside the
+  tile changed) and every size derived from it: `public/brand/moci-symbol-*.png`, `src/app/favicon.ico`, `icon1.png`,
+  `icon2.png`, `apple-icon.png` (corners filled from the tile's own edge, since iOS shows transparency as black). The
+  wordmark is the symbol beside "moci" set in the heading face (`components/ui/Logo.tsx`) — header and footer.
+- **Share image:** `src/app/opengraph-image.png`, 1200 × 630, composed from the mark's gradient, the symbol and the
+  hero's line.
+- **Colours** (`src/styles/globals.css`): sampled from the mark — teal `#0c4476`, navy `#1e2165`, purple `#552785`,
+  glyph white `#fcfcfc`; every other token is one of these mixed with white or black. Tokens renamed rose → lilac,
+  burgundy → indigo; translucent lines use `rgb(var(--ink-rgb) / a)`. Primary buttons carry the mark's gradient.
+- **Type:** JetBrains Mono (headings, buttons, nav, prices), Inter (paragraphs, form), Departure Mono kept for the
+  11px pixel labels (it covers ă â î ș ț).
+- **Hero seam:** the threshold under the Hero now steps from the picture's dark through navy and purple to lilac over
+  paper gaps, into the light form section (it used to end on a burgundy band).
+- **Still Splendessa's, waiting for the final mascot and scenes:** the pixel art (`public/hero/dusk-pier.webp`,
+  `public/campaign2/*`, `public/footer/launch-trail.webp`) and the three demo sites with their captures
+  (`public/demos/*`, live on `*.splendessa.com`). The footer ground stays the launch scene's own `#12090b` until then.
 
 ```sh
 npm install

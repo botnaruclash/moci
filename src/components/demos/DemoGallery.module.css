@@ -75,8 +75,8 @@
   border-radius: var(--demo-radius);
   background-color: var(--color-paper-2);
   box-shadow:
-    0 0 0 1px rgb(21 16 18 / 0.06),
-    0 8px 22px rgb(21 16 18 / 0.1);
+    0 0 0 1px rgb(var(--ink-rgb) / 0.06),
+    0 8px 22px rgb(var(--ink-rgb) / 0.1);
   color: var(--color-ink);
   text-align: left;
   cursor: pointer;
@@ -106,14 +106,14 @@
   max-width: calc(100% - 16px);
   padding: 6px 10px;
   border-radius: 10px;
-  background-color: rgb(255 252 250 / 0.95);
-  box-shadow: 0 2px 8px rgb(18 11 14 / 0.18);
+  background-color: rgb(var(--paper-rgb) / 0.95);
+  box-shadow: 0 2px 8px rgb(var(--night-rgb) / 0.18);
 }
 
 .chipName {
   max-width: 100%;
   overflow: hidden;
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   font-size: 13px;
   font-weight: 500;
   line-height: 1.2;
@@ -147,8 +147,8 @@
   .card:hover {
     transform: translateY(-2px);
     box-shadow:
-      0 0 0 1px rgb(21 16 18 / 0.06),
-      0 14px 30px rgb(21 16 18 / 0.16);
+      0 0 0 1px rgb(var(--ink-rgb) / 0.06),
+      0 14px 30px rgb(var(--ink-rgb) / 0.16);
   }
 }
 
@@ -237,7 +237,7 @@
 }
 
 .dialog::backdrop {
-  background-color: rgb(18 11 14 / 0.55);
+  background-color: rgb(var(--night-rgb) / 0.55);
 }
 
 .panel {
@@ -246,7 +246,7 @@
   overscroll-behavior: contain;
   border-radius: 20px;
   background-color: var(--color-paper);
-  box-shadow: 0 24px 64px rgb(18 11 14 / 0.35);
+  box-shadow: 0 24px 64px rgb(var(--night-rgb) / 0.35);
   color: var(--color-ink);
 }
 
@@ -268,7 +268,7 @@
   place-items: center;
   height: 44px;
   padding: 0;
-  border: 1px solid rgb(21 16 18 / 0.14);
+  border: 1px solid rgb(var(--ink-rgb) / 0.14);
   border-radius: 999px;
   background-color: var(--color-paper);
   color: var(--color-ink);
@@ -299,7 +299,7 @@
   overflow: hidden;
   border-radius: 12px;
   background-color: var(--color-paper-2);
-  box-shadow: 0 0 0 1px rgb(21 16 18 / 0.06);
+  box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / 0.06);
 }
 
 .panelImage {
@@ -319,9 +319,9 @@
 .panelLabel {
   margin: 0;
   padding: 2px 8px;
-  border: 1px dashed color-mix(in srgb, var(--color-burgundy-600) 55%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--color-indigo-600) 55%, transparent);
   border-radius: 999px;
-  color: var(--color-burgundy-600);
+  color: var(--color-indigo-600);
   font-family: var(--font-meta);
   font-size: 10.5px;
   letter-spacing: 0.04em;
@@ -329,6 +329,7 @@
 }
 
 .panelName {
+  font-family: var(--font-display);
   margin: 12px 0 0;
   font-size: 22px;
   font-weight: 400;
@@ -399,7 +400,7 @@
 }
 
 .gallery[data-input="keyboard"] :is(.card, .pause, .panelButton, .panelMedia, .panelLink):focus-visible {
-  outline: 2px solid rgb(21 16 18 / 0.55);
+  outline: 2px solid rgb(var(--ink-rgb) / 0.55);
   outline-offset: 2px;
 }
 

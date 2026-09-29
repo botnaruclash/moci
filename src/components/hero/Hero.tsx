@@ -50,8 +50,8 @@ export function Hero() {
         </div>
       </HeroStage>
 
-      {/* Exit: stacked planes stepping from the art's bottom colour into the burgundy scene below. */}
-      <Threshold kind="art-burgundy" />
+      {/* Exit: stacked planes stepping from the art's bottom colour into the light form section below. */}
+      <Threshold kind="art-paper" />
     </Section>
   );
 }
