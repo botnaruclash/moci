@@ -8,8 +8,8 @@ import { choosePlan, type Plan } from "./plan";
 import { START_ID } from "./StartLink";
 
 /** A button in the comparison table's foot: selects its plan in the form above and takes the visitor there. Without
- *  script it is a plain anchor to the form. "Alege" on phones (the plan's name for screen readers), "Alege Premium"
- *  from 768px. */
+ *  script it is a plain anchor to the form. "Alege" below 1024px (the plan's name for screen readers), "Alege Premium"
+ *  from 1024px. */
 export function ChoosePlanLink({ plan }: { plan: Plan }) {
   return (
     <a

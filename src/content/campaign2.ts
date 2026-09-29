@@ -83,7 +83,7 @@ export const campaign = {
     title: "Începi gratuit. Treci pe domeniul tău când vrei.",
     // The column headings are the plans' "name · price" (set on two lines on phones); the foot row picks a plan.
     columns: { feature: "Primești" },
-    // DRAFT — the foot row's buttons: "Alege" on phones, "Alege Gratuit" / "Alege Premium" from 768px.
+    // DRAFT — the foot row's buttons: "Alege" below 1024px, "Alege Gratuit" / "Alege Premium" from 1024px.
     choose: "Alege",
     yes: "Da",
     no: "Nu",

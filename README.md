@@ -27,9 +27,12 @@ string, screen-reader label, the demo panel and the page metadata).
   transparent PNGs at the sheet's own resolution (alpha made crisp, no resampling): `public/campaign2/moci-envelope.png`
   (the mochi in its envelope, on the panel's top-right edge, where the sitting figure was) and
   `moci-plane-left.png` / `moci-plane-right.png` (either side of the headline, where the pink clouds were).
-- **Still Splendessa's:** the figure on the comparison table (`checkbox-girl.webp`), the girl on the cloud by the demos
-  (`girl-on-cloud*.webp`), the outlined clouds by the table (`cloud-outline.png`), and the three demo sites with their
-  captures (`public/demos/*`, live on `*.splendessa.com`).
+- **Comparison ornaments (owner's, 29 Sep 2026):** cut the same way from `reference/moci-compare-ornaments.png`:
+  `public/campaign2/moci-checks.png` (the mochi holding a white and a purple check, resting on the table's top edge
+  where the Gratuit and Premium columns meet) and `moci-check-left.png` / `moci-check-right.png` (either side of the
+  heading, where the outlined clouds were).
+- **Still Splendessa's:** the girl on the cloud by the demos (`girl-on-cloud*.webp`) and the three demo sites with
+  their captures (`public/demos/*`, live on `*.splendessa.com`).
 
 ```sh
 npm install

@@ -565,71 +565,80 @@
   }
 }
 
-/* ---- Comparison decorations (variant B) -----------------------------------------------------
-   The outlined cloud is true pixel art on an 18 × 8 grid, reduced to it and drawn at 3× / 4×, nearest-neighbour. The
-   figure is kept as drawn (residue removed, trimmed, downscaled to three times her size). She sits on the table's top
-   edge at the Free | Priority boundary, her legs down between the two column labels; on phones, where those columns
-   are narrow, she is left out so the table stays easy to read. */
+/* ---- Comparison decorations -----------------------------------------------------------------
+   moci: cut from reference/moci-compare-ornaments.png into three tight transparent PNGs at the sheet's own
+   resolution. A white check (Gratuit) and a purple one (Premium), with sparkles, sit either side of the heading. The
+   mochi holding both checks rests on the table's top edge, centred where the Gratuit and Premium columns meet — the
+   white check over Gratuit, the purple one over Premium — and never reaches down over the column headings. */
 .compareInner {
   position: relative;
 }
 
-.compareCloud {
+.compareCheck {
   position: absolute;
-  top: -44px; /* moci: above the wider mono heading on phones */
-  width: 54px; /* 3× */
   height: auto;
   max-width: none;
-  image-rendering: pixelated;
   pointer-events: none;
   user-select: none;
 }
 
-.compareCloudL {
+/* Phones: small, in the band above the heading, at its outer edges. */
+.compareCheckL {
+  top: -46px;
   left: var(--site-gutter);
+  width: 46px;
 }
 
-.compareCloudR {
+.compareCheckR {
+  top: -40px;
   right: var(--site-gutter);
+  width: 38px;
 }
 
 .tableWrap {
   position: relative;
 }
 
-.checkGirl {
-  display: none;
+/* The mochi's flat base sits on the table's top edge (its height is 292/783 of its width), centred on the boundary
+   between the two plan columns: 42% + 29% on phones, 50% + 25% from 768px (see the feature column's widths). */
+.checksMochi {
+  --mochi-w: 128px;
+  --mochi-tuck: 2px;
+  position: absolute;
+  z-index: 2;
+  left: 71%;
+  top: calc(var(--mochi-tuck) - var(--mochi-w) * 292 / 783);
+  width: var(--mochi-w);
+  height: auto;
+  max-width: none;
+  translate: -50% 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Phones: room above the table for the mochi. */
+.compareHead {
+  margin-bottom: 68px;
 }
 
 @media (min-width: 48rem) {
-  .compareCloud {
-    top: -4px;
-    width: 72px; /* 4× */
+  .compareCheck {
+    top: -8px;
   }
 
-  .compareCloudL {
+  .compareCheckL {
     left: 4%;
+    width: 64px;
   }
 
-  .compareCloudR {
-    right: 1%;
+  .compareCheckR {
+    right: 2%;
+    width: 54px;
   }
 
-  /* The Free | Priority boundary sits at 75% of the table (feature 50%, then two equal columns). Row 0.6 of her height is
-     where she sits. */
-  .checkGirl {
-    --girl-w: 88px;
-    position: absolute;
-    z-index: 2;
-    display: block;
+  .checksMochi {
+    --mochi-w: 176px;
     left: 75%;
-    top: calc(var(--girl-w) * 479 / 420 * -0.6);
-    width: var(--girl-w);
-    height: auto;
-    max-width: none;
-    translate: -50% 0;
-    pointer-events: none;
-    user-select: none;
   }
 
   .compareHead {
@@ -638,16 +647,20 @@
 }
 
 @media (min-width: 64rem) {
-  .compareCloudL {
+  .compareCheckL {
     left: 6%;
+    width: 84px;
   }
 
-  .compareCloudR {
-    right: 1.5%;
+  .compareCheckR {
+    top: 12px;
+    right: 4%;
+    width: 72px;
   }
 
-  .checkGirl {
-    --girl-w: 128px;
+  .checksMochi {
+    --mochi-w: 216px;
+    --mochi-tuck: 3px;
   }
 
   .compareHead {
@@ -860,7 +873,8 @@
   }
 }
 
-@media (min-width: 48rem) {
+/* "Gratuit · 0 MDL" on one line only where the mono column heading fits it (from 1280px). */
+@media (min-width: 80rem) {
   .colPrice {
     display: inline;
   }
@@ -924,8 +938,9 @@
   outline-offset: 2px;
 }
 
-/* Phones: "Alege" alone, the plan's name kept for screen readers, no chevron. */
-@media (max-width: 47.999rem) {
+/* Phones and tablets: "Alege" alone, the plan's name kept for screen readers, no chevron (the mono face is too wide
+   for "Alege Premium" in a column under 1024px). */
+@media (max-width: 63.999rem) {
   .choosePlanName {
     position: absolute;
     width: 1px;

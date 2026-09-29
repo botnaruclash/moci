@@ -61,11 +61,12 @@ export function CompareSection() {
   return (
     <section id="compare" data-section="" data-tone="light" className={styles.compareSection} aria-labelledby="compare-title">
       <div className={cx("site-container", styles.compareInner)}>
-        {/* Two of the supplied outlined cloud, at a whole-number scale of its 18 × 8 grid, either side of the heading. */}
-        {(["compareCloudL", "compareCloudR"] as const).map((cloud) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img key={cloud} className={cx(styles.compareCloud, styles[cloud])} src="/campaign2/cloud-outline.png" alt="" aria-hidden="true" width={18} height={8} />
-        ))}
+        {/* moci: a free (white) and a premium (purple) check, with sparkles, either side of the heading (cut from
+            reference/moci-compare-ornaments.png). */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className={cx(styles.compareCheck, styles.compareCheckL)} src="/campaign2/moci-check-left.png" alt="" aria-hidden="true" width={242} height={194} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className={cx(styles.compareCheck, styles.compareCheckR)} src="/campaign2/moci-check-right.png" alt="" aria-hidden="true" width={211} height={164} />
         <div className={styles.compareHead}>
           <h2 id="compare-title" className="type-h2">
             {compare.title}
@@ -73,9 +74,10 @@ export function CompareSection() {
         </div>
 
         <div className={styles.tableWrap}>
-          {/* The supplied figure holding two checks, sitting on the table's top edge where Gratuit meets Premium. */}
+          {/* moci: the mochi holding a white check (Gratuit) and a purple one (Premium), resting on the table's top edge
+              where the two columns meet (cut from reference/moci-compare-ornaments.png). */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={styles.checkGirl} src="/campaign2/checkbox-girl.webp" alt="" aria-hidden="true" width={420} height={479} loading="lazy" decoding="async" />
+          <img className={styles.checksMochi} src="/campaign2/moci-checks.png" alt="" aria-hidden="true" width={783} height={292} loading="lazy" decoding="async" />
           <div className={styles.tableScroll} role="region" aria-labelledby="compare-title" tabIndex={0}>
             <table className={styles.compare}>
               <thead>
@@ -128,7 +130,7 @@ export function CompareSection() {
   );
 }
 
-/** "Gratuit · 0 MDL" on one line from 768px; on phones the price drops under the name and the dot goes. */
+/** "Gratuit · 0 MDL" on one line from 1280px; below that the price drops under the name and the dot goes. */
 function ColumnHead({ name, price }: { name: string; price: string }) {
   return (
     <>
