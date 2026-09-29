@@ -1,15 +1,14 @@
 /* Launch Night — the page's last scene.
    Reference 1 (footer): the information over a full-bleed dark pixel scene, the credits under it; on phones the
    credits centre.
-   Splendessa: the supplied launch scene (the builder riding a trail of blocks up to the cursor) is the footer's stage
-   from 48rem, the information set in its empty sky — top left, clear of the cursor at top right and of the trail
-   below. On phones the information comes first and the scene follows it. The ground is the scene's own night
-   (#12090b, a hair off the site's night, so no seam shows at the picture's edges). Static. */
+   moci: the mascot's trail (the >_< face at the head of a stream of pixel blocks, on black) is the footer's stage from
+   48rem, the information set in its empty black — top left, clear of the face on the right and of the trail below.
+   On phones the information comes first and the scene follows it. The ground is the picture's own black. Static. */
 
 .night {
   overflow-x: clip; /* guard: nothing in the scene may widen the page */
   padding-top: 72px;
-  background-color: #12090b;
+  background-color: #000000; /* the picture's own black, so its edges never show */
 }
 
 /* From 48rem the picture and the information share one cell: the picture sets the height, the information sits on
@@ -185,7 +184,8 @@
 
 /* ---- The scene: the launch trail ----------------------------------------------------------- */
 
-/* Phones: after the information, square, framed on the builder and the cursor. */
+/* Phones: after the information, 4:3, framed on the mascot's face and the trail behind it (the black sky above it is
+   left out: the information already sits on black). */
 .scene {
   position: relative;
   margin-top: 40px;
@@ -195,9 +195,9 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  object-position: 78% 72%;
+  object-position: 100% 88%;
 }
 
 /* From 48rem: the whole picture, edge to edge, as the stage. */

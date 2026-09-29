@@ -37,7 +37,7 @@
    belonged to no section, which read as a stray stripe.) */
 .threshold[data-kind="art-paper"] {
   --t-gap: var(--color-paper);
-  --t-1: #0e0912; /* the Hero picture's own pier, at its bottom edge */
+  --t-1: #060b34; /* the Hero picture's own ground, at its bottom edge */
   --t-2: var(--color-indigo-800);
   --t-3: var(--color-indigo-600);
   --t-4: var(--color-lilac-400);
@@ -45,7 +45,7 @@
 }
 
 /* Dusk: the page's last light into Launch Night — paper through the mark's purple and navy to the footer art's own
-   ground (#12090b, kept until the pixel scenes are replaced, so no seam shows against the picture). */
+   ground (black, so no seam shows against the picture). */
 .threshold[data-kind="dusk"] {
   grid-template-rows: 6px 12px 18px 24px 36px;
   row-gap: 6px;
@@ -54,5 +54,5 @@
   --t-2: var(--color-lilac-400);
   --t-3: var(--color-indigo-600);
   --t-4: var(--color-indigo-800);
-  --t-5: #12090b;
+  --t-5: #000000;
 }

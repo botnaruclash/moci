@@ -20,9 +20,11 @@ string, screen-reader label, the demo panel and the page metadata).
   11px pixel labels (it covers ă â î ș ț).
 - **Hero seam:** the threshold under the Hero now steps from the picture's dark through navy and purple to lilac over
   paper gaps, into the light form section (it used to end on a burgundy band).
-- **Still Splendessa's, waiting for the final mascot and scenes:** the pixel art (`public/hero/dusk-pier.webp`,
-  `public/campaign2/*`, `public/footer/launch-trail.webp`) and the three demo sites with their captures
-  (`public/demos/*`, live on `*.splendessa.com`). The footer ground stays the launch scene's own `#12090b` until then.
+- **Hero and footer art (owner's, 29 Sep 2026):** `public/hero/moci-night-hill.webp` (the >_< mascot on a hilltop
+  above the clouds, framed on the mascot at every width) and `public/footer/moci-trail.webp` (the mascot's face at the
+  head of a pixel trail, on black; the footer ground is the picture's own black).
+- **Still Splendessa's:** the pixel characters and clouds in `public/campaign2/*`, and the three demo sites with their
+  captures (`public/demos/*`, live on `*.splendessa.com`).
 
 ```sh
 npm install
@@ -36,7 +38,7 @@ npm run build
 | # | Section | Source |
 |---|---|---|
 | – | Header (desktop pill, phone bar + full-screen menu) | `bytemochi.com` — `components/layout/Header` + `MobileMenu` |
-| 1 | Hero (dusk pier scene, glass card) | `bytemochi.com` — `components/hero` |
+| 1 | Hero (night hilltop scene with the mascot, glass card) | `bytemochi.com` — `components/hero` |
 | 2 | Choice + form (headline, clouds, sitting figure; Gratuit / Premium cards, then the form) | `get.bytemochi.com` — `components/campaign2` (form part of `CampaignPage`) |
 | 3 | Gratuit · 0 MDL vs Premium · 1.999 MDL table | `get.bytemochi.com` — `components/campaign2` (compare part of `CampaignPage`) |
 | 4 | Three demo sites (carousel on phones, detail panel) | `get.bytemochi.com` — `components/campaign2/ConceptBuilds` + `components/demos/DemoGallery` |

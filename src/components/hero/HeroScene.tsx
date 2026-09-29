@@ -1,8 +1,8 @@
 import styles from "./Hero.module.css";
 
-// The Hero's scene: one supplied picture — dusk over the water, the builder on the pier holding up a lit block
-// (master in design/hero-dusk). It replaces the layered A1 scene (background, foreground, figure) with a single still
-// image that covers the stage, framed on the builder: her sky carries the headline, the pier the card.
+// The Hero's scene: one supplied picture — the moci mascot (the >_< slime) on a grassy hilltop above a sea of clouds,
+// under a starry night (owner's art, 29 Sep 2026). A single still image that covers the stage, framed on the mascot:
+// the sky carries the headline, the rocks and grass on the left the card.
 
 export function HeroScene() {
   return (
@@ -10,11 +10,11 @@ export function HeroScene() {
       {/* Plain <img>: the art must not pass through the image optimizer. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/hero/dusk-pier.webp"
+        src="/hero/moci-night-hill.webp"
         alt=""
         className={styles.sceneImage}
-        width={1484}
-        height={1060}
+        width={1536}
+        height={1024}
         draggable={false}
         fetchPriority="high"
         decoding="async"

@@ -4,7 +4,7 @@
 .hero {
   position: relative;
   color: var(--color-paper);
-  background-color: #0e0912; /* the picture's pier, at its bottom edge */
+  background-color: #060b34; /* the picture's own ground, at its bottom edge */
   --scene-accent: var(--color-lilac-200); /* visible focus rings over the art */
   --card-room: 0px;
   /* Phones and tablets: one screen — the screen as it opens, bars shown — with the card resting at its foot, and
@@ -34,14 +34,13 @@
 
 /* ---- Art ---------------------------------------------------------------------------------- */
 
-/* One supplied picture (design/hero-dusk), covering the stage. Framed on the builder: centred on her across, and
-   anchored low enough that her sky carries the headline. Phones show a narrow slice of a wide picture, so the frame
-   leans a little right of her to keep the setting sun in view beside her. */
+/* One supplied picture, covering the stage. Framed on the mascot: centred on it across, and anchored low enough that
+   the night sky carries the headline. Phones show a narrow slice of a wide picture, centred on the mascot. */
 .scene {
   position: absolute;
   inset: 0 0 var(--card-room);
   overflow: clip;
-  background-color: #1c0f1d; /* the picture's own dusk, shown only until it arrives */
+  background-color: #070f3f; /* the picture's own night sky, shown only until it arrives */
 }
 
 .sceneImage {
@@ -50,14 +49,14 @@
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: 56% 62%;
+  object-position: 50% 78%; /* the mascot (49.5% across, 79% down) centred on a narrow phone slice */
   pointer-events: none;
   user-select: none;
 }
 
 @media (min-width: 48rem) {
   .sceneImage {
-    object-position: 50% 70%;
+    object-position: 50% 74%;
   }
 }
 

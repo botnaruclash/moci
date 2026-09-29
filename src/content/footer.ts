@@ -4,5 +4,5 @@ export const footerCopy = {
   line: "moci — site-uri pentru afaceri de servicii din Moldova.",
   navLabel: "Navigare în subsol",
   /** Screen-reader equivalent for the scene. */
-  summary: "Ilustrație: un constructor urcă noaptea pe un șir de blocuri pixelate, spre un cursor.",
+  summary: "Ilustrație: mascota moci, cu fața >_<, zboară în fruntea unei dâre de blocuri pixelate albastre și violet.",
 } as const;
