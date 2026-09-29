@@ -1,0 +1,1033 @@
+/* Variant B. The intake panel: the form, the two equal choices and the simulated next steps. The panel is the
+   homepage's rose case (How it works); fields and buttons are the site's control language at a thumb-friendly 48px. */
+
+.panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 16px calc(24px + env(safe-area-inset-bottom));
+  scroll-margin-top: 64px;
+  border: 1px solid rgb(21 16 18 / 0.08);
+  border-radius: 20px;
+  background-color: var(--color-rose-50);
+}
+
+@media (min-width: 48rem) {
+  .panel {
+    gap: 24px;
+    padding: 32px;
+    border-radius: 24px;
+  }
+}
+
+@media (min-width: 64rem) {
+  .panel {
+    gap: 32px;
+    padding: 48px 56px 56px;
+    border-radius: 28px;
+  }
+}
+
+.kicker {
+  margin: 0;
+  color: var(--color-burgundy-600);
+}
+
+/* ---- Form ---------------------------------------------------------------------------------- */
+
+.form {
+  display: grid;
+  gap: 24px;
+}
+
+.colMain {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+  min-width: 0;
+}
+
+/* Desktop: essentials on the left, the optional direction on the right, the button across the foot. */
+@media (min-width: 64rem) {
+  .form {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 56px;
+    row-gap: 36px;
+  }
+
+  .submitRow {
+    grid-column: 1 / -1;
+    padding-top: 28px;
+    border-top: 1px solid rgb(21 16 18 / 0.1);
+  }
+}
+
+.group {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.label {
+  margin: 0;
+  padding: 0;
+  color: var(--color-ink);
+}
+
+.labelQuiet {
+  color: var(--color-ink-2);
+}
+
+.hint {
+  margin: -4px 0 0;
+  color: var(--color-muted);
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgb(21 16 18 / 0.18);
+  border-radius: 8px;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 16px; /* 16px or more, or iOS zooms the page on focus */
+  transition: border-color 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+}
+
+.input::placeholder {
+  color: rgb(21 16 18 / 0.36);
+}
+
+.textarea {
+  height: auto;
+  min-height: 84px;
+  padding-block: 12px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.input:hover {
+  border-color: rgb(21 16 18 / 0.32);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--color-burgundy-600);
+  box-shadow: 0 0 0 3px rgb(124 23 52 / 0.16);
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--color-burgundy-600);
+}
+
+.error {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  color: var(--color-burgundy-600);
+}
+
+/* A 2px pixel "!" before each error, in the site's pixel language. */
+.error::before {
+  content: "";
+  flex: none;
+  width: 2px;
+  height: 10px;
+  margin-top: 6px;
+  background: linear-gradient(var(--color-burgundy-600) 0 6px, transparent 6px 8px, var(--color-burgundy-600) 8px);
+}
+
+.reveal {
+  display: grid;
+  gap: 16px;
+  animation: reveal 200ms var(--ease-out);
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* ---- Links: one or more, each named as it is typed ------------------------------------------ */
+
+.links {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linkRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 8px;
+}
+
+.linkRow .error {
+  grid-column: 1 / -1;
+}
+
+.linkInput {
+  position: relative;
+  grid-column: 1;
+}
+
+.linkRow:first-child .linkInput {
+  grid-column: 1 / -1;
+}
+
+.inputTagged {
+  padding-right: 118px;
+}
+
+.kind {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  max-width: 108px;
+  overflow: hidden;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background-color: var(--color-paper-2);
+  color: var(--color-ink-2);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.remove {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgb(21 16 18 / 0.14);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-ink-2);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.remove:hover {
+  background-color: rgb(21 16 18 / 0.04);
+}
+
+.add {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+  min-height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.add:hover {
+  color: var(--color-burgundy-600);
+}
+
+.plus {
+  display: block;
+  flex: none;
+}
+
+.remove:focus-visible,
+.add:focus-visible {
+  outline: 2px solid var(--color-burgundy-600);
+  outline-offset: 2px;
+}
+
+/* ---- Checkboxes, contact pills, preferred ---------------------------------------------------- */
+
+/* "We're not online yet": a native checkbox under a drawn 18px box. */
+.check {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+  min-height: 32px;
+  color: var(--color-ink-2);
+  cursor: pointer;
+}
+
+.check input,
+.method input,
+.chip input,
+.preferred input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkBox {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgb(21 16 18 / 0.32);
+  border-radius: 4px;
+  background-color: var(--color-paper);
+}
+
+.check input:checked + .checkBox {
+  border-color: var(--color-ink);
+  background-color: var(--color-ink);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 4' shape-rendering='crispEdges'%3E%3Cpath fill='%23fffcfa' d='M4 0h1v1H4zM3 1h1v1H3zM0 2h1v1H0zM2 2h1v1H2zM1 3h1v1H1z'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px 8px;
+}
+
+.check input:focus-visible + .checkBox {
+  outline: 2px solid var(--color-burgundy-600);
+  outline-offset: 2px;
+}
+
+/* Contact methods: three equal pills, any number on; a chosen one is ink. Native checkboxes underneath. */
+.methods {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.method {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 48px;
+  padding: 4px 6px;
+  border: 1px solid rgb(21 16 18 / 0.18);
+  border-radius: 8px;
+  background-color: var(--color-paper);
+  color: var(--color-ink-2);
+  text-align: center;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out), border-color 150ms var(--ease-out);
+}
+
+.method:hover {
+  border-color: rgb(21 16 18 / 0.32);
+}
+
+.method:has(input:checked) {
+  border-color: var(--color-ink);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.method:has(input:focus-visible),
+.chip:has(input:focus-visible),
+.preferred:has(input:focus-visible) {
+  outline: 2px solid var(--color-burgundy-600);
+  outline-offset: 2px;
+}
+
+/* "Preferred": a small radio at the end of each chosen method's label row, shown once two or more are chosen. */
+.preferred {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 0 2px;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.radioDot {
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgb(21 16 18 / 0.32);
+  border-radius: 50%;
+  background-color: var(--color-paper);
+}
+
+.preferred:has(input:checked) {
+  color: var(--color-burgundy-600);
+}
+
+.preferred input:checked + .radioDot {
+  border-color: var(--color-burgundy-600);
+  box-shadow: inset 0 0 0 3px var(--color-paper);
+  background-color: var(--color-burgundy-600);
+}
+
+/* ---- Optional: colours and references ------------------------------------------------------ */
+
+.optional {
+  display: grid;
+  align-content: start;
+  gap: 20px;
+  min-width: 0;
+  padding-top: 20px;
+  border-top: 1px dashed rgb(21 16 18 / 0.18);
+}
+
+@media (min-width: 64rem) {
+  .optional {
+    padding: 0 0 0 56px;
+    border-top: 0;
+    border-left: 1px dashed rgb(21 16 18 / 0.18);
+  }
+}
+
+.optionalHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin: 0;
+}
+
+.optionalHead > span:first-child {
+  color: var(--color-burgundy-600);
+}
+
+.optionalHead > span:last-child {
+  color: var(--color-ink-2);
+}
+
+.optionalToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgb(21 16 18 / 0.18);
+  border-radius: 8px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.optionalToggle:focus-visible {
+  outline: 2px solid var(--color-burgundy-600);
+  outline-offset: 2px;
+}
+
+.optionalBody {
+  display: grid;
+  gap: 20px;
+}
+
+.optionalBody[data-open="false"] {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .optionalToggle {
+    display: none;
+  }
+
+  .optionalBody[data-open="false"] {
+    display: grid;
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 12px 0 10px;
+  border: 1px solid rgb(21 16 18 / 0.16);
+  border-radius: 999px;
+  background-color: var(--color-paper);
+  color: var(--color-ink-2);
+  cursor: pointer;
+  transition: border-color 150ms var(--ease-out), background-color 150ms var(--ease-out);
+}
+
+.chip:hover {
+  border-color: rgb(21 16 18 / 0.32);
+}
+
+.chip:has(input:checked) {
+  border-color: var(--color-ink);
+  box-shadow: inset 0 0 0 1px var(--color-ink);
+  color: var(--color-ink);
+}
+
+.chipAuto {
+  padding-left: 12px;
+  border-style: dashed;
+}
+
+.chipAuto:has(input:checked) {
+  border-style: solid;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* Three pixel squares per direction. */
+.swatch {
+  display: inline-flex;
+  flex: none;
+}
+
+.swatch i {
+  width: 8px;
+  height: 14px;
+}
+
+.submitRow {
+  display: grid;
+  gap: 12px;
+}
+
+.previewNote {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+@media (min-width: 48rem) {
+  .submitRow {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+/* ---- Buttons ------------------------------------------------------------------------------- */
+
+.primary,
+.secondary,
+.primaryPaper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 16px 8px 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    opacity 150ms var(--ease-out),
+    transform var(--dur-press) var(--ease-out);
+}
+
+.primary {
+  border-color: #2b2328;
+  background-color: var(--color-ink);
+  background-image: linear-gradient(90deg, rgb(255 252 250 / 0) 0%, rgb(255 252 250 / 0.12) 100%);
+  color: var(--color-paper);
+}
+
+.secondary {
+  border-color: var(--color-ink);
+  background-color: transparent;
+  color: var(--color-ink);
+}
+
+.primaryPaper {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.primary:hover,
+.primaryPaper:hover {
+  opacity: 0.9;
+}
+
+.secondary:hover {
+  background-color: rgb(21 16 18 / 0.04);
+}
+
+.primary:active,
+.secondary:active,
+.primaryPaper:active {
+  transform: scale(0.98);
+}
+
+.primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.primary:focus-visible,
+.secondary:focus-visible {
+  outline: 2px solid var(--color-burgundy-600);
+  outline-offset: 2px;
+}
+
+.primaryPaper:focus-visible {
+  outline: 2px solid var(--color-paper);
+  outline-offset: 2px;
+}
+
+@media (min-width: 48rem) {
+  .form .primary {
+    width: auto;
+  }
+}
+
+/* ---- The two choices ----------------------------------------------------------------------- */
+
+.choose {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.chooseHead {
+  display: grid;
+  gap: 2px;
+}
+
+.chooseHeading {
+  margin: 0;
+}
+
+.chooseHeading:focus {
+  outline: none;
+}
+
+.chooseHeading:focus-visible {
+  outline: 2px solid var(--color-burgundy-600);
+  outline-offset: 4px;
+}
+
+/* One line: who it's for, and the way back to the form. */
+.forLine {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-ink-2);
+}
+
+.forName {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.forLine .edit {
+  flex: none;
+  min-height: 44px;
+}
+
+@media (min-width: 48rem) {
+  .choose {
+    gap: 20px;
+  }
+}
+
+.edit {
+  min-height: 36px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+  background: none;
+  color: var(--color-ink);
+  cursor: pointer;
+  justify-self: start;
+}
+
+.edit:focus-visible {
+  outline: 2px solid var(--color-burgundy-600);
+  outline-offset: 2px;
+}
+
+.options {
+  display: grid;
+  gap: 10px;
+}
+
+@media (min-width: 64rem) {
+  .option {
+    padding: 32px;
+  }
+}
+
+@media (min-width: 48rem) {
+  .options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid rgb(21 16 18 / 0.14);
+  border-radius: 12px;
+  background-color: var(--color-paper);
+}
+
+/* Priority leads: a heavier ink frame and the burgundy price; Free keeps the plain card and outlined button. */
+.optionPriority {
+  border: 2px solid var(--color-ink);
+  box-shadow: 0 1px 0 rgb(21 16 18 / 0.04), 0 8px 24px -16px rgb(21 16 18 / 0.35);
+}
+
+.optionName {
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.facts {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-ink-2);
+}
+
+.facts li {
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  gap: 8px;
+}
+
+.facts li::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  margin-top: 9px;
+  background-color: currentColor;
+}
+
+.option h4 {
+  margin: 0;
+}
+
+.optionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--color-muted);
+}
+
+.price {
+  color: var(--color-ink);
+}
+
+.optionText {
+  margin: 0;
+  color: var(--color-ink-2);
+}
+
+.option .primary {
+  margin-top: auto;
+}
+
+.optionPriority .price {
+  color: var(--color-burgundy-600);
+}
+
+.option .secondary {
+  margin-top: auto;
+}
+
+.both {
+  margin: 0;
+  color: var(--color-ink-2);
+}
+
+/* ---- Simulated outcomes -------------------------------------------------------------------- */
+
+.result {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: 16px;
+}
+
+.result h3 {
+  margin: 0;
+}
+
+.result h3:focus {
+  outline: none;
+}
+
+.previewStamp {
+  margin: 0;
+  padding: 3px 8px;
+  border: 1px dashed var(--color-burgundy-600);
+  border-radius: 4px;
+  color: var(--color-burgundy-600);
+}
+
+.resultText {
+  max-width: 52ch;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--color-ink-2);
+}
+
+.draft {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.checkoutTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  justify-self: stretch;
+}
+
+.summary {
+  justify-self: stretch;
+  margin: 0;
+  padding: 4px 16px;
+  border: 2px solid var(--color-ink);
+  border-radius: 12px;
+  background-color: var(--color-paper);
+}
+
+.summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.summary div + div {
+  border-top: 1px solid rgb(21 16 18 / 0.1);
+}
+
+.summary dt {
+  flex: none;
+  color: var(--color-ink-2);
+}
+
+.summary dd {
+  min-width: 0;
+  margin: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.summaryTotal dd {
+  color: var(--color-burgundy-600);
+}
+
+.payBlock {
+  display: grid;
+  gap: 12px;
+  justify-self: stretch;
+}
+
+/* Free success: the optional second path, quieter than the result itself. */
+.upgrade {
+  display: grid;
+  gap: 8px;
+  justify-self: stretch;
+  padding: 16px;
+  border: 1px dashed rgb(21 16 18 / 0.25);
+  border-radius: 12px;
+}
+
+.upgradeTitle,
+.upgradeText {
+  margin: 0;
+}
+
+.upgradeText {
+  color: var(--color-ink-2);
+}
+
+.result .primary {
+  width: 100%;
+}
+
+@media (min-width: 48rem) {
+  .result .primary {
+    width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .method,
+  .chip,
+  .primary,
+  .secondary,
+  .primaryPaper {
+    transition: none;
+  }
+
+  .reveal {
+    animation: none;
+  }
+}
+
+/* ---- Live submission (variant B) --------------------------------------------------------------------------------- */
+
+/* The honeypot: out of sight and out of the tab order. */
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.submitError {
+  grid-column: 1 / -1;
+}
+
+/* The gallery consent sits just above the free option's button. */
+.consent {
+  align-items: flex-start;
+  margin-top: auto;
+  line-height: 1.45;
+}
+
+.consent .checkBox {
+  flex: none;
+  margin-top: 2px;
+}
+
+.consent + .primary,
+.consent + .error + .primary {
+  margin-top: 4px;
+}
+
+.reference {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.savedNote {
+  color: var(--color-ink);
+}
+
+.primary:disabled[aria-busy="true"] {
+  cursor: progress;
+}
+
+/* ---- PayPal checkout (variant B) ---------------------------------------------------------------------------------- */
+
+.paypal {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.paypalButtons {
+  min-height: 48px;
+}
+
+.paypalNote {
+  margin: 0;
+  color: var(--color-ink-2);
+}
+
+/* ---- Before you pay: the priority essentials ---------------------------------------------------------------------- */
+
+.essentials {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  max-width: 520px;
+  padding: 16px;
+  border: 1px solid rgb(21 16 18 / 0.12);
+  border-radius: 12px;
+  background-color: var(--color-paper);
+}
+
+.essentialsTitle {
+  margin: 0;
+  color: var(--color-burgundy-600);
+}
+
+.essentialsIntro,
+.essentialsOptional {
+  margin: 0;
+  color: var(--color-ink-2);
+}
+
+.essentialsOptional {
+  color: var(--color-muted);
+}
+
+.essentialsList {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.essentialsList li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-ink);
+}
+
+/* A pixel square: filled when the essential is there, hollow when it's missing. */
+.essentialsMark {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  box-shadow: inset 0 0 0 1px var(--color-burgundy-600);
+}
+
+.essentialsList li[data-ok="true"] .essentialsMark {
+  background-color: var(--color-burgundy-600);
+}
+
+.essentialsList li[data-ok="false"] {
+  color: var(--color-burgundy-600);
+}
+
+.essentialsFix {
+  display: grid;
+  gap: 10px;
+}

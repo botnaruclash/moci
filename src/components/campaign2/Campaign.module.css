@@ -1,0 +1,837 @@
+/* The 100 Website Experiment — page frame, the opening screen (headline, the two ways in and the form together), the
+   comparison, and the closing. Mobile first; every colour, face and size comes from Splendessa's tokens (globals.css). */
+
+/* ---- Preview bar and header ---------------------------------------------------------------- */
+
+.previewBar {
+  margin: 0;
+  padding: 7px 16px;
+  background-color: var(--color-ink);
+  color: var(--color-rose-200);
+  text-align: center;
+}
+
+.previewLong {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .previewLong {
+    display: inline;
+  }
+
+  .previewShort {
+    display: none;
+  }
+}
+
+/* Sticky, not fixed: iOS in-app browsers misplace fixed bars when their toolbars move (see Header.module.css). */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid rgb(21 16 18 / 0.08);
+  background-color: rgb(255 252 250 / 0.94);
+}
+
+.barInner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 52px;
+}
+
+@media (min-width: 64rem) {
+  .barInner {
+    height: 56px;
+  }
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  margin-left: -7px;
+  border-radius: 6px;
+  color: #171418;
+}
+
+.markY {
+  display: block;
+  height: 19px;
+  aspect-ratio: 367 / 354;
+  background-color: currentColor;
+  mask: url("/brand/splendessa-y.png") center / contain no-repeat;
+}
+
+.identifier {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--color-ink-2);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Results (/100) and splendessa.com, on the right. On phones only Results, the proof beside the form. */
+.barNav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: auto;
+}
+
+.results,
+.agency {
+  color: var(--color-ink-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.agency {
+  display: none;
+}
+
+.results:hover,
+.agency:hover {
+  color: var(--color-ink);
+}
+
+.results[aria-current="page"] {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+@media (min-width: 48rem) {
+  .agency {
+    display: inline;
+  }
+}
+
+/* ---- Buttons ------------------------------------------------------------------------------- */
+
+/* The site's primary button (ui.module.css) at the campaign's 48px. */
+.start {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 16px 0 20px;
+  border: 1px solid #2b2328;
+  border-radius: 8px;
+  background-color: var(--color-ink);
+  background-image: linear-gradient(90deg, rgb(255 252 250 / 0) 0%, rgb(255 252 250 / 0.12) 100%);
+  color: var(--color-paper);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    opacity 150ms var(--ease-out),
+    transform var(--dur-press) var(--ease-out);
+}
+
+.start:hover {
+  opacity: 0.9;
+}
+
+.start:active {
+  transform: scale(0.98);
+}
+
+.startPaper {
+  border-color: var(--color-paper);
+  background-color: var(--color-paper);
+  background-image: none;
+  color: var(--color-ink);
+}
+
+/* ---- Opening screen (variant B) ------------------------------------------------------------
+   A centred, restrained headline and one short line, then the form at nearly the full content width. Nothing else:
+   no picture, no prices — the choice waits until the form is complete. */
+.hero {
+  padding: 20px 0 64px;
+}
+
+.heroHead {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.kicker {
+  margin: 0 0 14px;
+  color: var(--color-muted);
+}
+
+/* The homepage's display caps, a size down: it introduces the form rather than competing with it. */
+.headline {
+  margin: 0;
+  font-size: clamp(1.875rem, 7.2vw, 4.25rem);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* Each line is a mask its words rise into (the opening reveal). The padding keeps the glyphs' overshoot inside. */
+.line {
+  display: block;
+  overflow: clip;
+  padding-block: 0.06em;
+  margin-block: -0.06em;
+}
+
+.line > span {
+  display: block;
+}
+
+.sub {
+  margin: 12px auto 0;
+  color: var(--color-ink-2);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.formSlot {
+  margin-top: 20px;
+  scroll-margin-top: 60px;
+  min-width: 0;
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    padding: 48px 0 88px;
+  }
+
+  .sub {
+    margin-top: 16px;
+    font-size: var(--text-lead);
+  }
+
+  .formSlot {
+    margin-top: 36px;
+  }
+}
+
+@media (min-width: 64rem) {
+  .hero {
+    padding: 64px 0 120px;
+  }
+
+  .sub {
+    margin-top: 20px;
+  }
+
+  .formSlot {
+    margin-top: 48px;
+  }
+}
+
+/* ---- Decorations: clouds and the sitting figure ----------------------------------------------
+   Supplied art; masters in design/campaign2. The cloud is true pixel art on a clean 20 × 6 grid, so it is reduced to
+   that grid and drawn only at whole-number scales, nearest-neighbour. The figure's grid is irregular, and reducing it
+   lost detail (the white of one eye), so she is kept as drawn: residue removed, trimmed, and downscaled to three times her
+   largest size with high-quality smoothing — each of her pixels still spans several screen pixels. Everything sits in
+   empty space: above the headline on phones and tablets, beside it on desktop, never over text, fields or buttons. */
+.heroInner {
+  position: relative;
+}
+
+.cloud {
+  position: absolute;
+  z-index: 0;
+  max-width: none;
+  height: auto;
+  image-rendering: pixelated;
+  pointer-events: none;
+  user-select: none;
+}
+
+.heroHead,
+.formSlot {
+  position: relative;
+  z-index: 1;
+}
+
+/* Phones: two small clouds in the band above the headline, the third left out. */
+.hero {
+  padding-top: 44px;
+}
+
+.cloudA {
+  top: -34px;
+  left: 2px;
+  width: 60px; /* 3× */
+}
+
+.cloudB {
+  display: none;
+}
+
+.cloudC {
+  top: -28px;
+  right: 6px;
+  width: 40px; /* 2× */
+}
+
+/* The figure sits with her hands on the panel's top edge: row 61 of 97 is where the ledge meets her. Below desktop the
+   form drops by her height above the ledge, so her head and shoulders sit in clear space under the line of text. */
+.formSlot {
+  margin-top: 72px;
+}
+
+.sitter {
+  position: absolute;
+  z-index: 2;
+  top: calc(-61px * var(--sitter-scale));
+  right: 24px;
+  width: calc(55px * var(--sitter-scale));
+  height: calc(97px * var(--sitter-scale));
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+  --sitter-scale: 1;
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    padding-top: 64px;
+  }
+
+  .cloudA {
+    top: -40px;
+    left: 0;
+    width: 80px; /* 4× */
+  }
+
+  .cloudC {
+    top: -30px;
+    right: 8px;
+    width: 60px; /* 3× */
+  }
+
+  .sitter {
+    right: 32px;
+  }
+
+  .formSlot {
+    margin-top: 76px;
+  }
+}
+
+/* Desktop: all three clouds beside the headline — two to its left, one to its right — as in the layout reference. */
+@media (min-width: 64rem) {
+  .hero {
+    padding-top: 64px;
+  }
+
+  .cloudA {
+    top: 8px;
+    left: 0;
+    width: 120px; /* 6× */
+  }
+
+  .cloudB {
+    display: block;
+    top: 104px;
+    left: 96px;
+    width: 80px; /* 4× */
+  }
+
+  .cloudC {
+    top: 0;
+    right: 32px;
+    width: 100px; /* 5× */
+  }
+
+  .sitter {
+    right: 40px;
+    --sitter-scale: 2;
+  }
+
+  .formSlot {
+    margin-top: 48px;
+  }
+}
+
+@media (min-width: 80rem) {
+  .cloudA {
+    left: 24px;
+  }
+
+  .cloudB {
+    left: 132px;
+  }
+
+  .cloudC {
+    right: 40px;
+  }
+}
+
+/* ---- The opening reveal ---------------------------------------------------------------------
+   One quick editorial pass, under 0.7s and gating nothing: the headline lines rise into their masks, the line and the
+   form settle up into place. The form can be typed into from the first frame. Reduced motion: everything is there. */
+@media (prefers-reduced-motion: no-preference) {
+  .line > span {
+    animation: rise 560ms var(--ease-out-strong) both;
+  }
+
+  .line + .line > span {
+    animation-delay: 70ms;
+  }
+
+  .sub {
+    animation: settle 420ms var(--ease-out) 140ms both;
+  }
+
+  .formSlot {
+    animation: settle 440ms var(--ease-out) 180ms both;
+  }
+
+  .cloud {
+    animation: drift-in 600ms var(--ease-out) 120ms both;
+  }
+
+  .cloudC {
+    animation-delay: 200ms;
+  }
+}
+
+@keyframes drift-in {
+  from {
+    opacity: 0;
+    translate: -8px 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* ---- Free or priority: one real comparison table -------------------------------------------- */
+
+.compareSection {
+  padding-block: var(--section-pad);
+  border-top: 1px solid rgb(21 16 18 / 0.08);
+}
+
+.compareHead {
+  max-width: 640px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+
+.compareHead h2 {
+  margin: 0;
+}
+
+.compareLine {
+  margin: 12px 0 0;
+  color: var(--color-ink-2);
+}
+
+@media (min-width: 64rem) {
+  .compareHead {
+    margin-bottom: 48px;
+  }
+}
+
+/* The table's frame. Wide enough on every phone; on the narrowest it scrolls sideways inside its own frame, with the
+   feature column held in place, rather than breaking into cards. */
+.tableScroll {
+  overflow-x: auto;
+  border: 1px solid rgb(21 16 18 / 0.12);
+  border-radius: 16px;
+  background-color: var(--color-paper);
+  overscroll-behavior-x: contain;
+}
+
+.tableScroll:focus-visible {
+  outline: 2px solid var(--color-burgundy-600);
+  outline-offset: 2px;
+}
+
+.compare {
+  width: 100%;
+  min-width: 320px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.compare th,
+.compare td {
+  padding: 14px 12px;
+  border-top: 1px solid rgb(21 16 18 / 0.1);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.compare thead th {
+  border-top: 0;
+  background-color: var(--color-paper-2);
+  color: var(--color-ink);
+}
+
+.compare thead th:first-child {
+  width: 52%;
+  color: var(--color-muted);
+}
+
+.compare .colHead {
+  text-align: center;
+}
+
+.compare .colPriority {
+  color: var(--color-burgundy-600);
+}
+
+/* The feature column holds still if the table ever scrolls sideways. */
+.compare tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-color: var(--color-paper);
+  font-weight: 400;
+}
+
+.compare thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.feature > span {
+  display: block;
+}
+
+.note {
+  margin-top: 4px;
+  color: var(--color-muted);
+}
+
+.compare .cell {
+  text-align: center;
+}
+
+/* The priority column, tinted with the site's rose so the two columns read apart at a glance. */
+.compare .cellPriority {
+  background-color: color-mix(in srgb, var(--color-rose-50) 70%, var(--color-paper));
+}
+
+.compare thead .colPriority {
+  background-color: var(--color-rose-50);
+}
+
+.markIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  vertical-align: middle;
+}
+
+.markIcon svg {
+  display: block;
+}
+
+.markYes {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.markNo {
+  color: rgb(21 16 18 / 0.4);
+  box-shadow: inset 0 0 0 1px rgb(21 16 18 / 0.14);
+}
+
+@media (min-width: 48rem) {
+  .compare th,
+  .compare td {
+    padding: 18px 24px;
+  }
+
+  .compare thead th:first-child {
+    width: 50%;
+  }
+}
+
+@media (min-width: 64rem) {
+  .compare th,
+  .compare td {
+    padding: 20px 32px;
+  }
+}
+
+/* ---- Comparison decorations (variant B) -----------------------------------------------------
+   The outlined cloud is true pixel art on an 18 × 8 grid, reduced to it and drawn at 3× / 4×, nearest-neighbour. The
+   figure is kept as drawn (residue removed, trimmed, downscaled to three times her size). She sits on the table's top
+   edge at the Free | Priority boundary, her legs down between the two column labels; on phones, where those columns
+   are narrow, she is left out so the table stays easy to read. */
+.compareInner {
+  position: relative;
+}
+
+.compareCloud {
+  position: absolute;
+  top: -6px;
+  width: 54px; /* 3× */
+  height: auto;
+  max-width: none;
+  image-rendering: pixelated;
+  pointer-events: none;
+  user-select: none;
+}
+
+.compareCloudL {
+  left: var(--site-gutter);
+}
+
+.compareCloudR {
+  right: var(--site-gutter);
+}
+
+.tableWrap {
+  position: relative;
+}
+
+.checkGirl {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .compareCloud {
+    top: -4px;
+    width: 72px; /* 4× */
+  }
+
+  .compareCloudL {
+    left: 4%;
+  }
+
+  .compareCloudR {
+    right: 1%;
+  }
+
+  /* The Free | Priority boundary sits at 75% of the table (feature 50%, then two equal columns). Row 0.6 of her height is
+     where she sits. */
+  .checkGirl {
+    --girl-w: 88px;
+    position: absolute;
+    z-index: 2;
+    display: block;
+    left: 75%;
+    top: calc(var(--girl-w) * 479 / 420 * -0.6);
+    width: var(--girl-w);
+    height: auto;
+    max-width: none;
+    translate: -50% 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .compareHead {
+    margin-bottom: 96px;
+  }
+}
+
+@media (min-width: 64rem) {
+  .compareCloudL {
+    left: 6%;
+  }
+
+  .compareCloudR {
+    right: 1.5%;
+  }
+
+  .checkGirl {
+    --girl-w: 128px;
+  }
+
+  .compareHead {
+    margin-bottom: 104px;
+  }
+}
+
+.termsNote {
+  margin: 14px 0 0;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* ---- Closing and footer (variant B) -------------------------------------------------------
+   The supplied launch scene: a builder on a trail of blocks rising to the cursor, on a night sky the colour of the
+   scene's own ground (#12090b, a hair off the site's night, so no seam shows). From 48rem the scene is the stage — the
+   statement, the button and the footer line sit in its empty sky, everything sized to the stage width so the type never
+   drifts onto the trail or the cursor. On phones the scene is too wide to carry the type, so the statement comes first
+   and the scene follows, framed on the builder and the cursor. The dusk threshold above it is kept. */
+
+.closing {
+  overflow-x: clip;
+  background-color: #12090b;
+  color: var(--color-paper);
+}
+
+/* Below 1400px the statement comes first and the scene follows it, whole; the footer line closes the section. */
+.closingStage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.closingBody {
+  order: 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 72px;
+  text-align: center;
+}
+
+.closingKicker {
+  margin: 0;
+  color: var(--color-rose-200);
+}
+
+.closingTitle {
+  margin: 16px 0 0;
+  font-size: clamp(2.75rem, 12.5vw, 8.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.closingTitle span {
+  display: block;
+}
+
+.closingCta {
+  margin-top: 28px;
+}
+
+.closingScene {
+  order: 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 32px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Phones: square, framed on the builder and the cursor. */
+@media (max-width: 47.99rem) {
+  .closingScene {
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: 78% 72%;
+  }
+}
+
+.footer {
+  order: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 16px 28px;
+  color: #b8a6ad;
+}
+
+.footer a {
+  color: inherit;
+}
+
+@media (min-width: 48rem) {
+  .closingBody {
+    padding-top: 112px;
+  }
+
+  .closingTitle {
+    font-size: clamp(4rem, 9vw, 8.5rem);
+  }
+
+  .closingScene {
+    margin-top: 16px;
+  }
+
+  .footer {
+    padding-block: 8px 32px;
+  }
+}
+
+/* From 1400px the art is wide enough to carry the type, as in the layout reference: the scene is the stage, and the
+   statement, the button and the footer line sit in its empty sky. Everything is placed in proportion to the stage, so
+   the button keeps clear of the builder's hair. */
+@media (min-width: 87.5rem) {
+  .closingStage {
+    display: block;
+    aspect-ratio: 1540 / 1021;
+  }
+
+  .closingScene {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+
+  .closingBody {
+    padding-top: 12.2%;
+  }
+
+  .closingTitle {
+    margin-top: 1.4vw;
+    font-size: min(8.2vw, 9.5rem);
+  }
+
+  .closingCta {
+    margin-top: 3.2vw;
+  }
+
+  .footer {
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 1;
+    padding-block: 0 2.2%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .start {
+    transition: none;
+  }
+}
+
+/* ---- Past the form (IntakeFlow sets html[data-flow-step]) --------------------------------------
+   The landing headline, clouds and sitting figure only introduce the form. Once it's done they give their space to
+   the choices, the checkout and the result, which then open at the top of the screen on phones and desktop. */
+:global(html[data-flow-step]:not([data-flow-step="form"])) .heroHead,
+:global(html[data-flow-step]:not([data-flow-step="form"])) .cloud,
+:global(html[data-flow-step]:not([data-flow-step="form"])) .sitter {
+  display: none;
+}
+
+:global(html[data-flow-step]:not([data-flow-step="form"])) .hero {
+  padding-top: 12px;
+}
+
+:global(html[data-flow-step]:not([data-flow-step="form"])) .formSlot {
+  margin-top: 0;
+}

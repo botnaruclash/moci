@@ -1,0 +1,68 @@
+/* Concept Builds: the heading and art; the gallery itself is the shared demo gallery (components/demos). */
+
+.section {
+  padding-block: var(--section-pad);
+}
+
+/* Variant B: the heading and the girl-on-cloud side by side on desktop, the art under the text on phones. */
+.intro {
+  display: grid;
+  gap: 32px;
+}
+
+.head {
+  max-width: 640px;
+}
+
+/* Supplied art, kept as drawn and downscaled to twice its largest size (public/campaign2, master in design/campaign2).
+   Phones: centred under the introduction, small enough to leave the text and the cards alone. */
+.cloudGirl {
+  display: block;
+  justify-self: center;
+  width: min(78%, 300px);
+  height: auto;
+  margin-bottom: -8px;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (min-width: 48rem) {
+  .cloudGirl {
+    width: 360px;
+  }
+}
+
+/* Desktop: upper right, opposite the heading, rising a little above the kicker, with open space before the cards. */
+@media (min-width: 64rem) {
+  .intro {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    column-gap: 48px;
+  }
+
+  .cloudGirl {
+    justify-self: end;
+    width: 480px;
+    margin: -72px 24px -8px 0;
+  }
+}
+
+.kicker {
+  margin: 0 0 16px;
+  color: var(--color-muted);
+}
+
+.lead {
+  margin: 16px 0 0;
+  color: var(--color-ink-2);
+}
+
+.grid {
+  margin-top: 40px;
+}
+
+@media (min-width: 48rem) {
+  .grid {
+    margin-top: 56px;
+  }
+}

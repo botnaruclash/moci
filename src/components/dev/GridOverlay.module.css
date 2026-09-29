@@ -1,0 +1,56 @@
+/* Debug colours sit outside the brand palette on purpose: they must stay visible on every scene. */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+}
+
+.cells,
+.columns {
+  position: absolute;
+  inset: 0;
+}
+
+/* Cell lines start at the container's content edge, so columns and cells share an origin. */
+.cells {
+  background-image:
+    linear-gradient(to right, rgb(0 122 255 / 0.22) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(0 122 255 / 0.22) 1px, transparent 1px),
+    linear-gradient(to right, rgb(0 122 255 / 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(0 122 255 / 0.08) 1px, transparent 1px);
+  background-size:
+    12px 12px,
+    12px 12px,
+    6px 6px,
+    6px 6px;
+  background-origin: content-box;
+  background-clip: border-box;
+}
+
+.track {
+  height: 100%;
+}
+
+.column {
+  background: rgb(0 122 255 / 0.06);
+  box-shadow:
+    inset 1px 0 0 rgb(0 122 255 / 0.4),
+    inset -1px 0 0 rgb(0 122 255 / 0.4);
+}
+
+.legend {
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: #06294d;
+  color: #ffffff;
+}
+
+.count::before {
+  counter-reset: cols var(--site-cols);
+  content: counter(cols);
+}

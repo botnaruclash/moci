@@ -1,0 +1,445 @@
+/* The demo gallery (DemoGallery.tsx), the same soft-cornered cards on splendessa.com (Craft) and getsplendessa.com.
+   Colours, faces and sizes come from Splendessa's tokens (globals.css). */
+
+.gallery {
+  --demo-radius: 14px;
+  position: relative;
+}
+
+/* ---- The track: an endless loop on phones, three side by side from 48rem --------------------- */
+
+/* Phones: the loop runs edge to edge of the screen (past the page gutter), so cards leave and return out of sight. */
+/* The clip gets room above and below for the focus ring and the cards' soft shadow, so no hard edge shows. */
+.track {
+  margin: -16px calc(-1 * var(--site-gutter, 16px)) -24px;
+  padding: 16px var(--site-gutter, 16px) 34px;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Every card sits in the same cell; the script places each one along the loop. The next card peeks in on the right. */
+.slide {
+  grid-area: 1 / 1;
+  width: 86%;
+  min-width: 0;
+  will-change: transform;
+}
+
+@media (min-width: 48rem) {
+  .track {
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    touch-action: auto;
+    user-select: auto;
+    -webkit-user-select: auto;
+  }
+
+  .list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .slide {
+    grid-area: auto;
+    width: auto;
+    will-change: auto;
+  }
+}
+
+@media (min-width: 64rem) {
+  .list {
+    gap: var(--site-gap, 24px);
+  }
+}
+
+/* ---- A card: the desktop hero capture alone, soft corners, a small name chip and hint on top --- */
+
+.card {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--demo-radius);
+  background-color: var(--color-paper-2);
+  box-shadow:
+    0 0 0 1px rgb(21 16 18 / 0.06),
+    0 8px 22px rgb(21 16 18 / 0.1);
+  color: var(--color-ink);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 200ms var(--ease-out),
+    box-shadow 200ms var(--ease-out);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  pointer-events: none;
+}
+
+.chip {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  max-width: calc(100% - 16px);
+  padding: 6px 10px;
+  border-radius: 10px;
+  background-color: rgb(255 252 250 / 0.95);
+  box-shadow: 0 2px 8px rgb(18 11 14 / 0.18);
+}
+
+.chipName {
+  max-width: 100%;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.explore {
+  color: var(--color-muted);
+  font-family: var(--font-meta);
+  font-size: 9.5px;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.explore [data-pointer="fine"] {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .explore [data-pointer="touch"] {
+    display: none;
+  }
+
+  .explore [data-pointer="fine"] {
+    display: inline;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 0 1px rgb(21 16 18 / 0.06),
+      0 14px 30px rgb(21 16 18 / 0.16);
+  }
+}
+
+.chip[data-at="top"] {
+  top: 8px;
+  bottom: auto;
+}
+
+@media (min-width: 64rem) {
+  .chip {
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .chip[data-at="top"] {
+    top: 10px;
+    bottom: auto;
+  }
+
+  .chipName {
+    font-size: 14px;
+  }
+}
+
+/* ---- Phones: "1 / 3" and pause / play, centred under the cards -------------------------------- */
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+@media (min-width: 48rem) {
+  .controls {
+    display: none;
+  }
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.pause {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-ink-2);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.counter {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-family: var(--font-meta);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Craft sits on its own scene; the controls take its colours. */
+.gallery[data-variant="craft"] .pause,
+.gallery[data-variant="craft"] .counter {
+  color: var(--scene-muted, var(--color-ink-2));
+}
+
+/* ---- The detail panel ------------------------------------------------------------------------ */
+
+/* Fits the visible screen (dvh follows in-app browser bars); the panel scrolls inside if it must. */
+.dialog {
+  width: min(600px, calc(100vw - 24px));
+  max-width: none;
+  max-height: calc(100dvh - 24px);
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.dialog::backdrop {
+  background-color: rgb(18 11 14 / 0.55);
+}
+
+.panel {
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: 20px;
+  background-color: var(--color-paper);
+  box-shadow: 0 24px 64px rgb(18 11 14 / 0.35);
+  color: var(--color-ink);
+}
+
+/* ‹ [ × ] › above the image: two circles and a wide close between them, one height, even gaps. It stays in reach
+   while the panel scrolls. */
+.panelHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  gap: 8px;
+  padding: 12px 12px 10px;
+  background-color: var(--color-paper);
+}
+
+.panelButton {
+  display: grid;
+  place-items: center;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgb(21 16 18 / 0.14);
+  border-radius: 999px;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 150ms var(--ease-out);
+}
+
+.panelClose {
+  border-radius: 12px;
+  background-color: var(--color-paper-2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .panelButton:hover {
+    background-color: var(--color-paper-2);
+  }
+
+  .panelClose:hover {
+    background-color: color-mix(in srgb, var(--color-paper-2) 80%, var(--color-ink) 6%);
+  }
+}
+
+.panelMedia {
+  display: block;
+  margin: 0 12px;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: var(--color-paper-2);
+  box-shadow: 0 0 0 1px rgb(21 16 18 / 0.06);
+}
+
+.panelImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.panelBody {
+  display: grid;
+  justify-items: start;
+  padding: 16px 20px 20px;
+}
+
+.panelLabel {
+  margin: 0;
+  padding: 2px 8px;
+  border: 1px dashed color-mix(in srgb, var(--color-burgundy-600) 55%, transparent);
+  border-radius: 999px;
+  color: var(--color-burgundy-600);
+  font-family: var(--font-meta);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.panelName {
+  margin: 12px 0 0;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.panelBuild {
+  margin: 6px 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-meta);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.panelDescription {
+  margin: 10px 0 0;
+  color: var(--color-ink-2);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.panelLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 16px;
+  padding: 0 20px;
+  border-radius: 10px;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-size: 16px;
+  text-decoration: none;
+}
+
+@media (min-width: 48rem) {
+  .panelHeader {
+    padding: 14px 16px 12px;
+  }
+
+  .panelMedia {
+    margin: 0 16px;
+  }
+
+  .panelBody {
+    padding: 20px 28px 28px;
+  }
+
+  .panelName {
+    font-size: 28px;
+  }
+
+  .panelLink {
+    width: auto;
+  }
+}
+
+/* ---- Focus: never a ring after a tap or click; a neutral one for keyboard use ------------------
+   The site's global ring is replaced for the gallery's own controls only. data-input (set by the script from the last
+   input) is needed because Safari treats focus moved by script, into the panel or back to a card, as focus-visible. */
+
+.gallery :is(.card, .pause, .panelButton, .panelMedia, .panelLink):focus {
+  outline: none;
+}
+
+.gallery[data-input="keyboard"] :is(.card, .pause, .panelButton, .panelMedia, .panelLink):focus-visible {
+  outline: 2px solid rgb(21 16 18 / 0.55);
+  outline-offset: 2px;
+}
+
+/* Opening: a short fade and rise (ease-out, under 250ms). */
+@media (prefers-reduced-motion: no-preference) {
+  .dialog[open] .panel {
+    animation: demo-panel-in 220ms var(--ease-out) both;
+  }
+
+  .dialog[open]::backdrop {
+    animation: demo-backdrop-in 220ms var(--ease-out) both;
+  }
+
+  .panelImage {
+    animation: demo-image-in 180ms var(--ease-out) both;
+  }
+}
+
+@keyframes demo-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+}
+
+@keyframes demo-backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes demo-image-in {
+  from {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .panelButton {
+    transition: none;
+  }
+}

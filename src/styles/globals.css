@@ -1,0 +1,330 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Splendessa v6 · design tokens (Phase 0)
+
+   Spacing: a 12px cell with a 6px half-cell. The grid is the default, not a
+   law — type, borders, optical alignment and responsive composition may step
+   off it when that looks better.
+--------------------------------------------------------------------------- */
+
+@theme static {
+  /* Only brand colours exist; Tailwind's default palette is removed. */
+  --color-*: initial;
+  --color-paper: #fffcfa;
+  --color-paper-2: #f7f0ee;
+  --color-ink: #151012;
+  --color-ink-2: #3d3337;
+  --color-muted: #74666b;
+  --color-rose-50: #fdf1f3;
+  --color-rose-200: #f6cad4;
+  --color-rose-400: #e495a8;
+  --color-burgundy-600: #7c1734;
+  --color-burgundy-800: #4b0e21;
+  --color-night: #120b0e;
+  /* Functional only, never brand accents: live = status and success; flash = pixel heat / launch bursts (≤1% of pixels).
+     Burgundy is the brand accent. Use rose-400 sparingly. */
+  --color-live: #2e9e63;
+  --color-flash: #ff5c7a;
+
+  --font-sans: var(--font-host-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-meta: var(--font-departure-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* One spacing unit = half a cell, so p-2 = 12px = 1 cell. */
+  --spacing: 6px;
+
+  --radius-*: initial;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  /* Type scale. Use through the type-* utilities below, which add case and weight. */
+  --text-*: initial;
+  --text-display-xl: clamp(3.25rem, 7.8vw, 7rem);
+  --text-display-xl--line-height: 0.92;
+  --text-display-xl--letter-spacing: -0.035em;
+  --text-display-l: clamp(3.5rem, 10vw, 9rem);
+  --text-display-l--line-height: 0.9;
+  --text-display-l--letter-spacing: -0.04em;
+  --text-display-m: clamp(2.125rem, 4.45vw, 4rem);
+  --text-display-m--line-height: 1.02;
+  --text-display-m--letter-spacing: -0.03em;
+  --text-h2: clamp(2.125rem, 3.4vw, 3rem);
+  --text-h2--line-height: 1.06;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: clamp(1.25rem, 1.67vw, 1.5rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.01em;
+  --text-lead: clamp(1.125rem, 1.53vw, 1.375rem);
+  --text-lead--line-height: 1.45;
+  --text-lead--letter-spacing: 0em;
+  --text-body: clamp(1rem, 1.25vw, 1.125rem);
+  --text-body--line-height: 1.6;
+  --text-body--letter-spacing: 0em;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.55;
+  --text-small--letter-spacing: 0em;
+  /* Departure Mono is pixel-perfect at 11px multiples, so these stay in px. */
+  --text-meta: 11px;
+  --text-meta--line-height: 12px;
+  --text-meta--letter-spacing: 0.06em;
+  --text-meta-l: 22px;
+  --text-meta-l--line-height: 24px;
+  --text-meta-l--letter-spacing: 0em;
+
+  /* Named curves. Pick per interaction; none is a universal default. */
+  --ease-*: initial;
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1); /* GSAP power2.out */
+  --ease-out-strong: cubic-bezier(0.25, 1, 0.5, 1); /* GSAP power3.out */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* GSAP power2.inOut, for deliberate symmetric moves */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* Reference 1's UI curve: header tone, colour and opacity changes */
+}
+
+@theme inline {
+  --color-scene-bg: var(--scene-bg);
+  --color-scene-fg: var(--scene-fg);
+  --color-scene-fg-2: var(--scene-fg-2);
+  --color-scene-muted: var(--scene-muted);
+  --color-scene-line: var(--scene-line);
+  --color-scene-frame: var(--scene-frame);
+  --color-scene-accent: var(--scene-accent);
+}
+
+:root {
+  /* Container: 1248px is the audit-derived starting candidate. Tune it by eye at 1440 and 390 in /lab/grid. */
+  --site-max: 1248px;
+  --site-gutter: 24px;
+  --site-cols: 4;
+  --site-gap: 24px;
+  --section-pad: 72px;
+  --section-pad-scene: 96px;
+
+  /* Small UI moments sit around 150–300ms. Narrative and scroll-linked motion set their own timing per scene. */
+  --dur-press: 120ms;
+  --dur-hover: 180ms;
+  --dur-reveal: 240ms;
+
+  /* Fixed header clearance for anchor jumps: 60px bar on phones; 16px + 54px pill on desktop. */
+  --header-offset: 72px;
+}
+
+/* The narrowest phones trade 4px of gutter for measure. */
+@media (max-width: 22.49rem) {
+  :root {
+    --site-gutter: 20px;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --header-offset: 86px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --site-gutter: 36px;
+    --site-cols: 8;
+    --site-gap: 36px;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --site-gutter: 48px;
+    --site-cols: 12;
+    --section-pad: 144px;
+    --section-pad-scene: 192px;
+  }
+}
+
+@media (min-width: 80rem) {
+  :root {
+    --site-gap: 48px;
+  }
+}
+
+@layer base {
+  /* Scenes: whole-section colour sets. Components read --scene-*, never raw colours. */
+  :root,
+  [data-scene="light"] {
+    --scene-bg: var(--color-paper);
+    --scene-fg: var(--color-ink);
+    --scene-fg-2: var(--color-ink-2);
+    --scene-muted: var(--color-muted);
+    --scene-line: rgb(21 16 18 / 0.12);
+    --scene-frame: var(--color-paper-2);
+    --scene-surface: var(--color-paper);
+    --scene-accent: var(--color-burgundy-600);
+  }
+
+  [data-scene="rose"] {
+    --scene-bg: var(--color-rose-50);
+    --scene-fg: var(--color-ink);
+    --scene-fg-2: var(--color-ink-2);
+    --scene-muted: #6c5c62;
+    --scene-line: rgb(21 16 18 / 0.12);
+    --scene-frame: var(--color-rose-200);
+    --scene-surface: var(--color-paper);
+    --scene-accent: var(--color-burgundy-600);
+  }
+
+  [data-scene="burgundy"] {
+    --scene-bg: var(--color-burgundy-600);
+    --scene-fg: var(--color-paper);
+    --scene-fg-2: #fbe9ed;
+    --scene-muted: var(--color-rose-200);
+    --scene-line: rgb(255 252 250 / 0.2);
+    --scene-frame: var(--color-burgundy-800);
+    --scene-surface: var(--color-burgundy-800);
+    --scene-accent: var(--color-rose-200);
+  }
+
+  [data-scene="night"] {
+    --scene-bg: var(--color-night);
+    --scene-fg: var(--color-paper);
+    --scene-fg-2: #e9dee1;
+    --scene-muted: #a8979d;
+    --scene-line: rgb(255 252 250 / 0.14);
+    --scene-frame: #221a1d;
+    --scene-surface: #1a1215;
+    --scene-accent: var(--color-rose-400);
+  }
+
+  [data-scene] {
+    background-color: var(--scene-bg);
+    color: var(--scene-fg);
+  }
+
+  [data-section] {
+    scroll-margin-top: var(--header-offset);
+  }
+
+  body {
+    position: relative;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--scene-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Layout */
+@utility site-container {
+  width: 100%;
+  max-width: calc(var(--site-max) + 2 * var(--site-gutter));
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+}
+
+@utility site-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--site-cols), minmax(0, 1fr));
+  column-gap: var(--site-gap);
+}
+
+@utility section-pad {
+  padding-block: var(--section-pad);
+}
+
+/* Type roles: size, leading and tracking from the tokens, plus case and weight. */
+@utility type-display-xl {
+  font-size: var(--text-display-xl);
+  line-height: var(--text-display-xl--line-height);
+  letter-spacing: var(--text-display-xl--letter-spacing);
+  font-weight: 400;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+@utility type-display-l {
+  font-size: var(--text-display-l);
+  line-height: var(--text-display-l--line-height);
+  letter-spacing: var(--text-display-l--letter-spacing);
+  font-weight: 400;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+@utility type-display-m {
+  font-size: var(--text-display-m);
+  line-height: var(--text-display-m--line-height);
+  letter-spacing: var(--text-display-m--letter-spacing);
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+@utility type-h2 {
+  font-size: var(--text-h2);
+  line-height: var(--text-h2--line-height);
+  letter-spacing: var(--text-h2--letter-spacing);
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+@utility type-h3 {
+  font-size: var(--text-h3);
+  line-height: var(--text-h3--line-height);
+  letter-spacing: var(--text-h3--letter-spacing);
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+@utility type-lead {
+  font-size: var(--text-lead);
+  line-height: var(--text-lead--line-height);
+  letter-spacing: var(--text-lead--letter-spacing);
+  font-weight: 400;
+}
+
+@utility type-body {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: 400;
+}
+
+@utility type-small {
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: 400;
+}
+
+/* Control labels: nav links, buttons, text links. Reference 1's 15/21 medium — a deliberate step off the scale. */
+@utility type-control {
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+
+@utility type-meta {
+  font-family: var(--font-meta);
+  font-size: var(--text-meta);
+  line-height: var(--text-meta--line-height);
+  letter-spacing: var(--text-meta--letter-spacing);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+@utility type-meta-l {
+  font-family: var(--font-meta);
+  font-size: var(--text-meta-l);
+  line-height: var(--text-meta-l--line-height);
+  letter-spacing: var(--text-meta-l--letter-spacing);
+  font-weight: 400;
+  text-transform: uppercase;
+}

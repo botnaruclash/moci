@@ -1,0 +1,214 @@
+/* Launch Night — the page's last scene.
+   Reference 1 (footer): the information over a full-bleed dark pixel scene, the credits under it; on phones the
+   credits centre.
+   Splendessa: the supplied launch scene (the builder riding a trail of blocks up to the cursor) is the footer's stage
+   from 48rem, the information set in its empty sky — top left, clear of the cursor at top right and of the trail
+   below. On phones the information comes first and the scene follows it. The ground is the scene's own night
+   (#12090b, a hair off the site's night, so no seam shows at the picture's edges). Static. */
+
+.night {
+  overflow-x: clip; /* guard: nothing in the scene may widen the page */
+  padding-top: 72px;
+  background-color: #12090b;
+}
+
+/* From 48rem the picture and the information share one cell: the picture sets the height, the information sits on
+   top of its sky. */
+@media (min-width: 48rem) {
+  .night {
+    padding-top: 0;
+  }
+
+  .stage {
+    display: grid;
+  }
+
+  .stage > * {
+    grid-area: 1 / 1;
+  }
+
+  .top {
+    position: relative;
+    z-index: 1;
+    align-self: start;
+    padding-top: 56px;
+  }
+}
+
+@media (min-width: 64rem) {
+  .top {
+    padding-top: 88px;
+  }
+}
+
+/* ---- Information -------------------------------------------------------------------------- */
+
+.top {
+  display: grid;
+  row-gap: 36px;
+}
+
+/* Desktop: the logo and line, then the nav and the button, all in the left half — the cursor holds the top right. */
+@media (min-width: 64rem) {
+  .top {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--site-gap);
+    row-gap: 32px;
+    align-items: start;
+  }
+
+  .identity {
+    grid-column: 1 / span 6;
+  }
+
+  .actions {
+    grid-column: 1 / span 7;
+  }
+}
+
+/* The supplied Splendessa logo (white lockup). */
+.wordmark {
+  margin: 0;
+}
+
+/* The white lockup, as tall as the display-m line it replaces. */
+.logo {
+  display: block;
+  height: var(--text-display-m);
+  aspect-ratio: 750.1 / 160;
+  color: #ffffff;
+}
+
+.line {
+  margin: 18px 0 0;
+  max-width: 30ch;
+  color: var(--scene-muted);
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* One row at every width: spread across the column on phones, grouped from 1024. */
+.nav {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 40rem) {
+  .nav {
+    justify-content: flex-start;
+    gap: 30px;
+  }
+}
+
+.navLink {
+  display: inline-block;
+  padding-block: 10px;
+  white-space: nowrap;
+  color: var(--scene-fg-2);
+  text-decoration: none;
+  text-underline-offset: 4px;
+  transition: color 180ms var(--ease-out);
+}
+
+.navLink:hover {
+  color: var(--scene-fg);
+  text-decoration: underline;
+}
+
+.cta {
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .actions {
+    align-items: flex-start;
+  }
+
+  .cta {
+    width: auto;
+  }
+}
+
+/* ---- Credits ------------------------------------------------------------------------------ */
+
+/* The ground of the scene and this row share the night, so the credits read as standing on the plaza — Reference 1's
+   corner credits, without a second surface. Legal links appear here only once `site.legal` has real routes. */
+.legal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-block: 20px 28px;
+  color: var(--scene-muted);
+  text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .legal {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    text-align: left;
+  }
+}
+
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legalLink {
+  color: var(--scene-muted);
+  text-decoration: none;
+  text-underline-offset: 4px;
+  transition: color 180ms var(--ease-out);
+}
+
+.legalLink:hover {
+  color: var(--scene-fg);
+  text-decoration: underline;
+}
+
+/* ---- The scene: the launch trail ----------------------------------------------------------- */
+
+/* Phones: after the information, square, framed on the builder and the cursor. */
+.scene {
+  position: relative;
+  margin-top: 40px;
+}
+
+.sceneImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 78% 72%;
+}
+
+/* From 48rem: the whole picture, edge to edge, as the stage. */
+@media (min-width: 48rem) {
+  .scene {
+    margin-top: 0;
+  }
+
+  .sceneImage {
+    aspect-ratio: auto;
+  }
+}
