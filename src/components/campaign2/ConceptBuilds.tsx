@@ -36,7 +36,7 @@ export function ConceptBuilds() {
         </div>
 
         <div className={styles.grid}>
-          <DemoGallery variant="campaign" label="3 demo sites" />
+          <DemoGallery variant="campaign" label={concepts.gallery} />
         </div>
       </div>
     </section>

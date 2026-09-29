@@ -1,9 +1,10 @@
 # moci-web
 
 One landing page at `/`, assembled from the two Splendessa copies in `~/Desktop/bytemochi-web` (used as a source
-only, never modified), now carrying moci's Romanian copy (owner's copy, 29 Sep 2026). Still Splendessa's: the logo
+only, never modified), now carrying moci's Romanian copy (owner's copy, 29 Sep 2026; full Romanian text pass on 29 Sep 2026: every visible
+string, screen-reader label, the demo panel and the page metadata). Still Splendessa's: the logo
 (header mark, footer lockup), favicon/icons, share image, colours, fonts, illustrations, and the three demo sites
-(their panel text is English).
+(the sites themselves are English; their cards and panel are Romanian and say they are demo concepts).
 
 ```sh
 npm install

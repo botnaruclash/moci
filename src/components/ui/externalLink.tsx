@@ -13,6 +13,6 @@ export function externalLinkProps(href: string) {
   const external = absolute && !OWN_HOSTS.has(new URL(href).hostname);
   return {
     anchor: external ? ({ target: "_blank", rel: "noopener noreferrer" } as const) : {},
-    hint: external ? <span className="sr-only"> (opens in a new tab)</span> : null,
+    hint: external ? <span className="sr-only"> (se deschide într-o filă nouă)</span> : null,
   };
 }

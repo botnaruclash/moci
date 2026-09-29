@@ -3,11 +3,11 @@
 
 export const demoMode = {
   bar: {
-    long: "Demo local: formularul nu salvează și nu trimite nimic, iar butoanele de apel nu au încă un număr.",
-    short: "Demo local · nimic nu se salvează sau trimite",
+    long: "Previzualizare: trimiterea formularului e simulată, datele nu se salvează și nu ajung la noi. Butoanele de apel nu au încă un număr.",
+    short: "Previzualizare · formularul nu trimite nimic",
   },
-  form: "Demo: nimic din ce scrii aici nu se salvează și nu se trimite.",
-  result: "Demo: cererea nu a fost salvată și nu a fost trimisă.",
+  form: "Demo: trimiterea e simulată. Datele nu ajung la noi și nu te va contacta nimeni.",
+  result: "Demo: cererea nu a fost trimisă.",
   /** On a call button while site.phone is not set. */
-  callOff: "Demo: numărul de telefon nu e setat încă",
+  callOff: "Demo: numărul de telefon nu e încă disponibil",
 } as const;

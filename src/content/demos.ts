@@ -1,18 +1,18 @@
 // The three demo sites, shared by splendessa.com (Craft) and getsplendessa.com (the campaign gallery), and ready for
 // the /100 gallery. Each is a real, live site for a fictional business: always labelled as a demo, never as a client
 // project. Descriptions are written from what each live site actually shows (checked 27 Sep 2026).
-//
-// Build time: the owner confirmed that the first build of each took under two hours. That is all the label claims —
-// not exact minutes, and not the time to an approved launch.
+// moci: no build-time label — the offer's only time promise is the hero's (about 3 hours once the project is taken on
+// and the materials are in).
 
 /** moci: the label on each card and in its panel (owner's copy, 29 Sep 2026). */
 export const DEMO_LABEL = "Concept demonstrativ";
-export const FIRST_BUILD_LABEL = "First build · under 2 hours";
 
 export type DemoSite = {
   readonly id: string;
   readonly name: string;
   readonly url: string;
+  /** The kind of business the concept imagines, shown under its name in the panel. */
+  readonly kind: string;
   /** One or two sentences, specific to the site. */
   readonly description: string;
   /** A local capture of the live desktop hero at 1440 × 900, 16:10 (1200 × 750; Sölv 1600 × 1000 from a 2× capture) — used on phones too. */
@@ -23,38 +23,47 @@ export type DemoSite = {
   readonly labelAt?: "top" | "bottom";
 };
 
+// moci: the sites themselves are in English (their headlines are quoted as they appear); the text about them is not.
 export const demoSites: readonly DemoSite[] = [
   {
     id: "solv",
     name: "Sölv",
     url: "https://solv.splendessa.com/",
+    kind: "Clinică de medicină estetică",
     description:
-      "Aesthetic medicine in Copenhagen. A quiet, doctor-led clinic site: an editorial hero, treatments with durations and prices, and one clear path to booking a consultation.",
+      "O pagină calmă, cu accent pe medic: fotografie mare în deschidere, proceduri cu durate și prețuri și un singur drum clar spre programarea unei consultații.",
     image: "/demos/solv-desktop.webp",
-    alt: "Sölv's homepage: a full-width photograph of a woman with her eyes closed in a treatment room, above the headline “Skin, in its own light.”",
+    alt: "Pagina principală Sölv: fotografia unei femei cu ochii închiși într-un cabinet, deasupra titlului „Skin, in its own light.”",
     labelAt: "top",
   },
   {
     id: "cedar",
     name: "Cedar Ridge Outdoor",
     url: "https://cedar.splendessa.com/",
+    kind: "Amenajări exterioare și grădini",
     description:
-      "Landscaping and outdoor living in Austin, Texas. A bold, trade-first site with a free-estimate form right in the hero and a click-to-call number at the top.",
+      "Un site direct, de meserie: formular de cerere de ofertă chiar în prima secțiune și numărul de telefon mereu la vedere, cu apel dintr-o atingere.",
     image: "/demos/cedar-desktop.webp",
-    alt: "Cedar Ridge Outdoor's homepage: “Backyards built for Texas summers” over a house and fire pit at dusk, beside a free-estimate form.",
+    alt: "Pagina principală Cedar Ridge Outdoor: titlul „Backyards built for Texas summers” peste o casă și un foc de tabără la apus, lângă un formular de ofertă.",
   },
   {
     id: "halden",
     name: "Halden Varga Architects",
     url: "https://halden.splendessa.com/",
+    kind: "Birou de arhitectură",
     description:
-      "An architecture studio in London and Lisbon. Oversized type, studio facts set like drawing notes, and full-bleed photographs of houses, libraries and workspaces.",
+      "Titluri foarte mari, datele biroului așezate ca note pe o planșă și fotografii ample ale caselor, bibliotecilor și spațiilor de lucru proiectate.",
     image: "/demos/halden-desktop.webp",
-    alt: "Halden Varga's homepage: the studio's name in very large type above a photograph of a brick and timber house on the marshes.",
+    alt: "Pagina principală Halden Varga: numele biroului cu litere foarte mari, deasupra fotografiei unei case din cărămidă și lemn.",
   },
 ];
 
 export const demoCopy = {
-  link: "Check it out for yourself",
-  close: "Close",
+  link: "Deschide conceptul (site în engleză)",
+  close: "Închide",
+  previous: "Exemplul anterior",
+  next: "Exemplul următor",
+  pause: "Pauză la derularea exemplelor",
+  /** "2 din 3" */
+  position: (n: number, total: number) => `${n} din ${total}`,
 } as const;

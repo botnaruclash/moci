@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { DEMO_LABEL, demoCopy, demoSites, FIRST_BUILD_LABEL } from "@/content/demos";
+import { DEMO_LABEL, demoCopy, demoSites } from "@/content/demos";
 import styles from "./DemoGallery.module.css";
 
 // The demo gallery, shared by splendessa.com (Craft) and getsplendessa.com (below the form).
@@ -17,8 +17,8 @@ import styles from "./DemoGallery.module.css";
 // Desktop: the three side by side, no motion.
 //
 // First tap/click: a detail panel (native modal <dialog>) with a header ‹ × › — previous / close / next, switching demos
-// inside the open panel and wrapping — then the hero image, name, build time, description and "Check it out for yourself
-// ↗". The image and the CTA both go to the live demo in the same tab. Before either navigates, the open demo, carousel
+// inside the open panel and wrapping — then the hero image, name, the kind of business, description and "Deschide
+// conceptul ↗". The image and the CTA both go to the live demo in the same tab. Before either navigates, the open demo, carousel
 // position and page scroll are saved for this tab, and coming back with Back restores them; any other arrival discards
 // them.
 
@@ -309,7 +309,7 @@ export function DemoGallery({ variant, label }: { variant: "craft" | "campaign";
               }}
               className={styles.slide}
               aria-roledescription="slide"
-              aria-label={`${i + 1} of ${count}`}
+              aria-label={demoCopy.position(i + 1, count)}
             >
               <button
                 ref={(el) => {
@@ -318,7 +318,7 @@ export function DemoGallery({ variant, label }: { variant: "craft" | "campaign";
                 type="button"
                 className={styles.card}
                 aria-haspopup="dialog"
-                aria-label={`${d.name} — ${FIRST_BUILD_LABEL}`}
+                aria-label={`${d.name} — ${DEMO_LABEL}`}
                 onClick={() => {
                   if (performance.now() - dragEnded.current < 400) return;
                   opener.current = i;
@@ -351,7 +351,7 @@ export function DemoGallery({ variant, label }: { variant: "craft" | "campaign";
               className={styles.pause}
               onClick={() => setPaused((p) => !p)}
               aria-pressed={paused}
-              aria-label="Pause the demo carousel"
+              aria-label={demoCopy.pause}
             >
               {paused ? <PlayIcon /> : <PauseIcon />}
             </button>
@@ -376,7 +376,7 @@ export function DemoGallery({ variant, label }: { variant: "craft" | "campaign";
         {demo && open !== null && (
           <div className={styles.panel}>
             <div className={styles.panelHeader}>
-              <button type="button" className={styles.panelButton} onClick={() => setOpen(prev)} aria-label={`Previous demo: ${demoSites[prev]!.name}`}>
+              <button type="button" className={styles.panelButton} onClick={() => setOpen(prev)} aria-label={`${demoCopy.previous}: ${demoSites[prev]!.name}`}>
                 <Chevron back />
               </button>
               <button type="button" className={`${styles.panelButton} ${styles.panelClose}`} onClick={() => setOpen(null)} aria-label={demoCopy.close} data-close>
@@ -384,7 +384,7 @@ export function DemoGallery({ variant, label }: { variant: "craft" | "campaign";
                   <path d="M2 2l10 10M12 2 2 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
                 </svg>
               </button>
-              <button type="button" className={styles.panelButton} onClick={() => setOpen(next)} aria-label={`Next demo: ${demoSites[next]!.name}`}>
+              <button type="button" className={styles.panelButton} onClick={() => setOpen(next)} aria-label={`${demoCopy.next}: ${demoSites[next]!.name}`}>
                 <Chevron />
               </button>
             </div>
@@ -399,7 +399,7 @@ export function DemoGallery({ variant, label }: { variant: "craft" | "campaign";
               <h3 id="demo-dialog-title" className={styles.panelName}>
                 {demo.name}
               </h3>
-              <p className={styles.panelBuild}>{FIRST_BUILD_LABEL}</p>
+              <p className={styles.panelBuild}>{demo.kind}</p>
               <p className={styles.panelDescription}>{demo.description}</p>
               <a
                 className={styles.panelLink}

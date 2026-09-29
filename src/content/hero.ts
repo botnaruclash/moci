@@ -6,9 +6,9 @@ export const heroCopy = {
   headline: ["Site-ul tău.", "Făcut rapid."],
   descriptor: ["Construim site-uri pentru afaceri", "de servicii din Moldova."],
   card: {
-    heading: "Începi gratuit pe un subdomeniu moci.md.",
+    heading: "Începi gratuit pe afacerea.moci.md.",
     condition:
-      "După ce preluăm proiectul și primim materialele, îți pregătim prima versiune funcțională în aproximativ 3 ore.",
+      "După ce preluăm proiectul și primim materialele, îți pregătim prima versiune funcțională în aproximativ 3 ore.",
     secondaryLink: { label: "Vezi exemplele", href: "#concepts" },
   },
 } as const;

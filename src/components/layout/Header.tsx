@@ -107,11 +107,11 @@ export function Header({ initialTone = "light" }: { initialTone?: Tone }) {
 
   return (
     <header className={styles.header} data-tone={open ? "light" : tone}>
-      <nav aria-label="Primary" className={styles.bar}>
+      <nav aria-label="Navigare principală" className={styles.bar}>
         <Link
           href="/"
           className={styles.logo}
-          aria-label={`${site.name}, home`}
+          aria-label={`${site.name}, începutul paginii`}
           onClick={(event) => {
             // Already on the homepage, a link to "/" is not a navigation, so nothing would move. Take the reader back
             // to the top instead, and drop any #section from the address.
@@ -150,7 +150,7 @@ export function Header({ initialTone = "light" }: { initialTone?: Tone }) {
             className={styles.menuButton}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? "Închide meniul" : "Deschide meniul"}
             onClick={toggleMenu}
           >
             <span className={styles.menuIcon} data-open={open} aria-hidden="true">

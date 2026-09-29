@@ -15,9 +15,9 @@ const SITE = GET_URL;
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   alternates: { canonical: "/" },
-  title: { default: "moci", template: "%s · moci" },
+  title: { default: "moci — Site-ul tău. Făcut rapid.", template: "%s · moci" },
   // Taken from the Hero, so the search result says what the page says.
-  description: "Construim site-uri pentru afaceri de servicii din Moldova. Începi gratuit pe un subdomeniu moci.md.",
+  description: "Site-uri de prezentare pentru afaceri de servicii din Moldova. Începi gratuit pe afacerea.moci.md sau alegi Premium, cu domeniul tău și rezervări online.",
   // opengraph-image.png beside this file is picked up automatically, and is what a link to the site shows when it
   // is pasted into a chat — which, with a video pointing at it, is most of how it will first be seen. Without it
   // the preview was a bare line of text.
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "moci",
     title: "moci — Site-ul tău. Făcut rapid.",
-    description: "Construim site-uri pentru afaceri de servicii din Moldova. Începi gratuit pe un subdomeniu moci.md.",
+    description: "Site-uri de prezentare pentru afaceri de servicii din Moldova. Începi gratuit pe afacerea.moci.md sau alegi Premium, cu domeniul tău și rezervări online.",
   },
   twitter: { card: "summary_large_image" },
 };

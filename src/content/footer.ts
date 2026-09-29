@@ -2,7 +2,7 @@
 
 export const footerCopy = {
   line: "moci — site-uri pentru afaceri de servicii din Moldova.",
-  navLabel: "Footer",
+  navLabel: "Navigare în subsol",
   /** Screen-reader equivalent for the scene. */
-  summary: "Illustration: the builder riding a trail of pixel blocks up to a cursor, at night.",
+  summary: "Ilustrație: un constructor urcă noaptea pe un șir de blocuri pixelate, spre un cursor.",
 } as const;
