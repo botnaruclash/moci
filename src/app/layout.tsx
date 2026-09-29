@@ -3,14 +3,14 @@ import type { ReactNode } from "react";
 import { GridOverlay } from "@/components/dev/GridOverlay";
 import { departureMono, inter, jetbrainsMono } from "@/lib/fonts";
 import { labEnabled } from "@/lib/lab";
-import { GET_URL } from "@/lib/sites";
+import { SITE_URL } from "@/lib/sites";
 import "@/styles/globals.css";
 
 // The page was held out of the index through the build — `robots: { index: false, follow: false }` — which was right
 // while it was unfinished and wrong the moment it started being shown to people. It is indexable now. /lab keeps its
 // own noindex, because that is scaffolding and not part of the site.
-// The absolute base for the share card and the canonical link: this site's origin (lib/sites.ts).
-const SITE = GET_URL;
+// The absolute base for the share card and the canonical link: this site's origin (lib/sites.ts, https://moci.md).
+const SITE = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),

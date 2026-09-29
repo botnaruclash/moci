@@ -1,5 +1,4 @@
-// The two sites' origins: the brand site (bytemochi.com) and the campaign site with the results (get.bytemochi.com).
-// Both projects share this file. The defaults are the local dev servers (npm run dev in each project), so a local
-// copy never links to a live domain; set both variables to the real domains before any deploy.
-export const BRAND_URL = (process.env.NEXT_PUBLIC_BRAND_URL || "http://localhost:3100").replace(/\/$/, "");
-export const GET_URL = (process.env.NEXT_PUBLIC_GET_URL || "http://localhost:3200").replace(/\/$/, "");
+// This site's public origin: the base for the canonical link, Open Graph URLs and the share image. It defaults to the
+// production domain, so a build never publishes a localhost address; set NEXT_PUBLIC_SITE_URL to override it (for
+// example on a preview deployment).
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://moci.md").replace(/\/$/, "");

@@ -43,6 +43,15 @@ npm run check    # typecheck + lint + motion check
 npm run build
 ```
 
+## Deploying (Vercel)
+
+- Framework preset: Next.js (detected). Install `npm ci`, build `npm run build`, no output directory override. Node ≥ 20.9
+  (`.nvmrc`).
+- No environment variables are required. The canonical link, Open Graph URLs and the share image default to
+  `https://moci.md` (`src/lib/sites.ts`); set `NEXT_PUBLIC_SITE_URL` only to publish under another address.
+- Leave `NEXT_PUBLIC_ENABLE_LAB` unset in production.
+- The page is fully static; the form stays a demo (no API routes, nothing is sent) and the page says so.
+
 ## Sections, in order, and where each came from
 
 | # | Section | Source |
@@ -79,7 +88,7 @@ The composition is in `src/app/page.tsx`; sections 2–3 are in `src/components/
 - Section kickers ("Start here", "Free or priority", "Concept Builds", "Next step"), the footer's CTA button and its
   "Fig. 04" caption were not in the owner's copy and are gone.
 - `/terms` and `/privacy` do not exist here, so `content/legal.ts` marks both unpublished and nothing links to them.
-- The only links leaving localhost: the three demo sites (`solv|cedar|halden.splendessa.com`), opened from the
+- The only links leaving the site: the three demo sites (`solv|cedar|halden.splendessa.com`), opened from the
   demo panel — Splendessa's live demos.
 - The form, table and demo sections carry `data-section data-tone="light"` so the header turns light over them, and
   the form's scroll margin uses the header's offset.
