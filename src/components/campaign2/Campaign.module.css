@@ -421,7 +421,7 @@
   }
 }
 
-/* ---- Free or priority: one real comparison table -------------------------------------------- */
+/* ---- Gratuit or Premium: one real comparison table -------------------------------------------- */
 
 .compareSection {
   padding-block: var(--section-pad);
@@ -824,7 +824,7 @@
 
 /* ---- Past the form (IntakeFlow sets html[data-flow-step]) --------------------------------------
    The landing headline, clouds and sitting figure only introduce the form. Once it's done they give their space to
-   the choices, the checkout and the result, which then open at the top of the screen on phones and desktop. */
+   the result, which then opens at the top of the screen on phones and desktop. */
 :global(html[data-flow-step]:not([data-flow-step="form"])) .heroHead,
 :global(html[data-flow-step]:not([data-flow-step="form"])) .cloud,
 :global(html[data-flow-step]:not([data-flow-step="form"])) .sitter {
@@ -844,15 +844,6 @@
 /* A cell in the owner's words ("Opțional", "Îl conectăm"), in the priority column's accent. */
 .cellText {
   color: var(--color-burgundy-600);
-}
-
-.compareActions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 16px 28px;
-  margin-top: 28px;
 }
 
 /* Phones: a narrower feature column and tighter cells, so "Le configurăm" fits; the column price under its name. */
@@ -887,5 +878,80 @@
 
   .colSep {
     display: inline;
+  }
+}
+
+/* ---- moci-web: the table's foot row picks a plan for the form (ChoosePlanLink) --------------- */
+
+.compare tfoot th,
+.compare tfoot td {
+  padding-block: 16px;
+}
+
+.choosePlan {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 220px;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--color-ink);
+  border-radius: 8px;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 150ms var(--ease-out),
+    opacity 150ms var(--ease-out),
+    transform var(--dur-press) var(--ease-out);
+}
+
+.choosePlan:hover {
+  background-color: rgb(21 16 18 / 0.04);
+}
+
+.choosePlanPremium {
+  border-color: #2b2328;
+  background-color: var(--color-ink);
+  background-image: linear-gradient(90deg, rgb(255 252 250 / 0) 0%, rgb(255 252 250 / 0.12) 100%);
+  color: var(--color-paper);
+}
+
+.choosePlanPremium:hover {
+  background-color: var(--color-ink);
+  opacity: 0.9;
+}
+
+.choosePlan:active {
+  transform: scale(0.98);
+}
+
+.choosePlan:focus-visible {
+  outline: 2px solid var(--color-burgundy-600);
+  outline-offset: 2px;
+}
+
+/* Phones: "Alege" alone, the plan's name kept for screen readers, no chevron. */
+@media (max-width: 47.999rem) {
+  .choosePlanName {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .choosePlanChevron {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choosePlan {
+    transition: none;
   }
 }

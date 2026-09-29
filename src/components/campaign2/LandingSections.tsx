@@ -1,19 +1,18 @@
-import { ButtonLink } from "@/components/ui/ButtonLink";
-import { CallLink } from "@/components/ui/CallLink";
 import { campaign, type Cell } from "@/content/campaign2";
 import { demoMode } from "@/content/demoMode";
-import { site } from "@/content/site";
 import { cx } from "@/lib/cx";
 import styles from "./Campaign.module.css";
+import { ChoosePlanLink } from "./ChoosePlanLink";
 import { IntakeFlow } from "./IntakeFlow";
 import { START_ID } from "./StartLink";
 
 // moci-web: the form section and the comparison table, from the campaign page (get.bytemochi.com,
 // components/campaign2/CampaignPage.tsx), with moci's copy. The form's headline is an <h2> (the Hero holds the <h1>);
-// the table's cells are a check, a cross or the owner's words, and the table ends in a note and two buttons. The sections carry data-section and
+// the section opens on the Gratuit / Premium choice (IntakeFlow), then the form. The table's cells are a check, a cross
+// or the owner's words; its foot row picks a plan for the form (ChoosePlanLink), and a note closes it. The sections carry data-section and
 // data-tone="light" so the header (and anchor scroll-margin) reads them as light sections, as on the brand site. The form never reaches a server.
 
-const { hero, compare } = campaign;
+const { hero, compare, plans } = campaign;
 
 /** The strip above the page: in the original it said payment wasn't connected; here it says the whole form is a demo. */
 export function DemoBar() {
@@ -72,7 +71,7 @@ export function CompareSection() {
         </div>
 
         <div className={styles.tableWrap}>
-          {/* The supplied figure holding two checks, sitting on the table's top edge where Free meets Priority. */}
+          {/* The supplied figure holding two checks, sitting on the table's top edge where Gratuit meets Premium. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className={styles.checkGirl} src="/campaign2/checkbox-girl.webp" alt="" aria-hidden="true" width={420} height={479} loading="lazy" decoding="async" />
           <div className={styles.tableScroll} role="region" aria-labelledby="compare-title" tabIndex={0}>
@@ -83,10 +82,10 @@ export function CompareSection() {
                     {compare.columns.feature}
                   </th>
                   <th scope="col" className={cx(styles.colHead, "type-control")}>
-                    <ColumnHead name={compare.columns.free[0]} price={compare.columns.free[1]} />
+                    <ColumnHead name={plans.free.name} price={plans.free.price} />
                   </th>
                   <th scope="col" className={cx(styles.colHead, styles.colPriority, "type-control")}>
-                    <ColumnHead name={compare.columns.paid[0]} price={compare.columns.paid[1]} />
+                    <ColumnHead name={plans.premium.name} price={plans.premium.price} />
                   </th>
                 </tr>
               </thead>
@@ -100,20 +99,28 @@ export function CompareSection() {
                       <Value cell={row.free} />
                     </td>
                     <td className={cx(styles.cell, styles.cellPriority)}>
-                      <Value cell={row.paid} />
+                      <Value cell={row.premium} />
                     </td>
                   </tr>
                 ))}
               </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="row" className={styles.feature}>
+                    <span className="sr-only">{plans.heading}</span>
+                  </th>
+                  <td className={styles.cell}>
+                    <ChoosePlanLink plan="free" />
+                  </td>
+                  <td className={cx(styles.cell, styles.cellPriority)}>
+                    <ChoosePlanLink plan="premium" />
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>
         <p className={cx(styles.termsNote, "type-small")}>{compare.note}</p>
-        {/* moci: the form button and "Sună pentru upgrade" (owner's copy). */}
-        <div className={styles.compareActions}>
-          <ButtonLink href={site.cta.href}>{site.cta.label}</ButtonLink>
-          <CallLink>{compare.call}</CallLink>
-        </div>
       </div>
     </section>
   );

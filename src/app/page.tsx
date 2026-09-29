@@ -8,8 +8,8 @@ import { Header } from "@/components/layout/Header";
 // moci-web: one landing page, assembled from the two Splendessa copies in bytemochi-web, text and look unchanged.
 //   Header .......... bytemochi.com (links adapted: form, options, demos)
 //   Hero ............ bytemochi.com (the brand homepage's Hero)
-//   Form ............ get.bytemochi.com (the campaign page's form, local demo only)
-//   Comparison ...... get.bytemochi.com (Free waitlist vs €99 Priority)
+//   Form ............ get.bytemochi.com (the Gratuit / Premium choice, then the form; local demo only)
+//   Comparison ...... get.bytemochi.com (the table, now Gratuit · 0 MDL vs Premium · 1.999 MDL)
 //   Demos ........... get.bytemochi.com (Concept Builds: the three demo sites in the shared demo gallery)
 //   CTA ............. bytemochi.com ("Ready when you are.", the Closing)
 //   Footer .......... bytemochi.com (Launch Night)
